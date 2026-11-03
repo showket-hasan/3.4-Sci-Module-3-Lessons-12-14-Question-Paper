@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Academic Reading: Paper 3 - Dioptrics, Optical Engineering, and the Biomechanics of Human Vision</title>
+    <style>
+        :root {
+            --primary-navy: #0b2545;
+            --secondary-blue: #134074;
+            --accent-gold: #c59b27;
+            --bg-parchment: #fcfbf9;
+            --card-bg: #ffffff;
+            --border-color: #d1d5db;
+            --text-dark: #1f2937;
+            --text-muted: #4b5563;
+            --correct-green: #15803d;
+            --correct-bg: #dcfce7;
+            --incorrect-red: #b91c1c;
+            --incorrect-bg: #fee2e2;
+            --highlight-yellow: #fef08a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, Georgia, serif;
+            background-color: #f3f4f6;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Top Header */
+        header.test-header {
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-bottom: 3px solid var(--accent-gold);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-title-box h1 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .header-title-box p {
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            font-style: italic;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timer-display {
+            background: #001220;
+            border: 1px solid var(--accent-gold);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timer-warning {
+            color: #ef4444 !important;
+            border-color: #ef4444 !important;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 1; }
+            to { opacity: 0.6; }
+        }
+
+        .btn {
+            font-family: 'Times New Roman', Times, serif;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: #0b2545;
+            border-color: #b0881e;
+        }
+        .btn-gold:hover {
+            background-color: #d8aa2b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ffffff;
+            border-color: #cbd5e1;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-blue);
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #0f3057;
+        }
+
+        .btn-secondary {
+            background-color: #4b5563;
+            color: #ffffff;
+        }
+
+        /* Navigation Bar */
+        nav.passage-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--bg-parchment);
+            color: var(--primary-navy);
+            border-color: var(--secondary-blue);
+            border-bottom: 2px solid var(--secondary-blue);
+        }
+
+        .nav-tools {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Main Test Layout (Split Screen) */
+        main.test-container {
+            display: flex;
+            height: calc(100vh - 135px);
+            overflow: hidden;
+            background-color: var(--bg-parchment);
+        }
+
+        .pane {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 32px;
+            scrollbar-width: thin;
+        }
+
+        .pane-passage {
+            background-color: #ffffff;
+            border-right: 2px solid #e5e7eb;
+        }
+
+        .pane-questions {
+            background-color: #fcfbf9;
+        }
+
+        /* Passage Typography */
+        .passage-header {
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-navy);
+            padding-bottom: 12px;
+        }
+
+        .passage-tag {
+            display: inline-block;
+            background: var(--primary-navy);
+            color: #ffffff;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .passage-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 4px;
+        }
+
+        .passage-header p.subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .passage-body p {
+            margin-bottom: 16px;
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .passage-body p.paragraph {
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .p-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+            color: var(--primary-navy);
+            background: #e2e8f0;
+            padding: 0 5px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+
+        /* Diagrams & Visuals in Passages */
+        .academic-figure {
+            margin: 24px 0;
+            padding: 16px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .academic-figure figcaption {
+            margin-top: 10px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .academic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.92rem;
+            background: #ffffff;
+        }
+
+        .academic-table th, .academic-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .academic-table th {
+            background-color: #f1f5f9;
+            color: var(--primary-navy);
+            font-weight: bold;
+        }
+
+        .academic-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Scientific Formula Callout Box (Clean Unicode / No LaTeX) */
+        .formula-callout {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--correct-green);
+            padding: 14px 20px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .formula-callout strong {
+            color: #166534;
+            font-size: 1.05rem;
+        }
+
+        .formula-display {
+            display: block;
+            margin: 8px 0;
+            padding: 10px 16px;
+            background: #ffffff;
+            border: 1px solid #bbf7d0;
+            border-radius: 4px;
+            font-size: 1.15rem;
+            color: #0b2545;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* Question Booklet Styling */
+        .question-section-banner {
+            background: #edf2f7;
+            border-left: 4px solid var(--secondary-blue);
+            padding: 10px 14px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .question-section-banner h3 {
+            font-size: 1.1rem;
+            color: var(--primary-navy);
+            margin-bottom: 4px;
+        }
+
+        .question-section-banner p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .question-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.2s;
+        }
+
+        .question-card:hover {
+            border-color: #94a3b8;
+        }
+
+        .question-card.answered {
+            border-left: 4px solid var(--secondary-blue);
+        }
+
+        .question-num {
+            font-weight: bold;
+            color: var(--primary-navy);
+            margin-right: 6px;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* Radio & Input Controls */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-size: 0.95rem;
+        }
+
+        .option-label:hover {
+            background-color: #f1f5f9;
+        }
+
+        .option-label input[type="radio"] {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .text-input-field {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.95rem;
+            padding: 6px 10px;
+            border: 1px solid #94a3b8;
+            border-radius: 4px;
+            width: 240px;
+            background: #ffffff;
+        }
+
+        .text-input-field:focus {
+            outline: none;
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 2px rgba(19, 64, 116, 0.2);
+        }
+
+        .select-input-field {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.95rem;
+            padding: 6px 10px;
+            border: 1px solid #94a3b8;
+            border-radius: 4px;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        /* Review Mode Explanation Styling */
+        .explanation-box {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 4px;
+            border-left: 3px solid #64748b;
+            font-size: 0.88rem;
+        }
+
+        .review-mode .explanation-box {
+            display: block;
+        }
+
+        .user-correct {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct-green) !important;
+        }
+
+        .user-incorrect {
+            background-color: var(--incorrect-bg) !important;
+            border-color: var(--incorrect-red) !important;
+        }
+
+        /* Bottom Status Bar */
+        footer.test-footer {
+            background-color: #ffffff;
+            border-top: 1px solid var(--border-color);
+            padding: 8px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 90;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+        }
+
+        .palette-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .palette-toggle-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .palette-grid {
+            display: none;
+            position: fixed;
+            bottom: 50px;
+            right: 24px;
+            width: 360px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .palette-grid.open {
+            display: block;
+        }
+
+        .grid-numbers {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .grid-btn {
+            font-family: 'Times New Roman', Times, serif;
+            width: 34px;
+            height: 32px;
+            border: 1px solid var(--border-color);
+            background: #f8fafc;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-btn.filled {
+            background: var(--secondary-blue);
+            color: #ffffff;
+            border-color: var(--secondary-blue);
+        }
+
+        /* Vocabulary Drawer */
+        .vocab-drawer {
+            position: fixed;
+            top: 60px;
+            right: -420px;
+            width: 400px;
+            height: calc(100vh - 120px);
+            background: #ffffff;
+            border-left: 2px solid var(--accent-gold);
+            box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+            transition: right 0.3s ease;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-drawer.open {
+            right: 0;
+        }
+
+        .vocab-header {
+            background: var(--primary-navy);
+            color: #ffffff;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vocab-list {
+            padding: 16px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .vocab-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .vocab-term {
+            font-weight: bold;
+            color: var(--secondary-blue);
+            font-size: 1rem;
+        }
+
+        .vocab-thai {
+            color: #b45309;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .vocab-def {
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        /* ========================================================
+           FULL AUTOMATED GRADING REPORT IN TIMES NEW ROMAN 10PT
+           ======================================================== */
+        .report-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(11, 37, 69, 0.85);
+            z-index: 300;
+            overflow-y: auto;
+            padding: 30px 16px;
+            font-family: 'Times New Roman', Times, Georgia, serif;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+
+        .report-overlay.open {
+            display: block;
+        }
+
+        .report-sheet {
+            background: #ffffff;
+            max-width: 960px;
+            margin: 0 auto;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            padding: 36px 44px;
+            color: #111827;
+            position: relative;
+        }
+
+        .report-header-banner {
+            border-bottom: 2px solid var(--primary-navy);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .school-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .program-title {
+            font-size: 11pt;
+            color: var(--secondary-blue);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .report-main-title {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #9a3412;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .report-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 16px 0;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            border-radius: 4px;
+            font-size: 9.5pt;
+        }
+
+        .meta-field strong {
+            color: var(--primary-navy);
+            display: block;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+        }
+
+        /* Scorecard Visual Banner */
+        .executive-scorecard {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+            align-items: center;
+            background: #fdfaf6;
+            border: 2px solid var(--accent-gold);
+            border-radius: 6px;
+            padding: 18px 24px;
+            margin-bottom: 24px;
+        }
+
+        .band-badge-box {
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 14px 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .band-badge-box .band-val {
+            font-size: 32pt;
+            font-weight: bold;
+            color: var(--correct-green);
+            line-height: 1;
+        }
+
+        .band-badge-box .band-label {
+            font-size: 9.5pt;
+            font-weight: bold;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .band-desc-box {
+            font-size: 10pt;
+        }
+
+        .band-desc-box h3 {
+            font-size: 12pt;
+            color: var(--primary-navy);
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-container {
+            background: #e2e8f0;
+            height: 14px;
+            border-radius: 7px;
+            overflow: hidden;
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #134074, #15803d);
+            height: 100%;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        /* Academic Sub-Score & Audit Tables in 10pt */
+        .report-section-title {
+            font-size: 11pt;
+            font-weight: bold;
+            color: var(--primary-navy);
+            border-bottom: 1.5px solid #cbd5e1;
+            padding-bottom: 4px;
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+            margin-bottom: 18px;
+            background: #ffffff;
+        }
+
+        .report-table th, .report-table td {
+            border: 1px solid #cbd5e1;
+            padding: 6px 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .report-table th {
+            background: #f1f5f9;
+            color: var(--primary-navy);
+            font-weight: bold;
+            font-size: 9.5pt;
+        }
+
+        .report-table tr:nth-child(even) {
+            background: #fafaf9;
+        }
+
+        .audit-correct {
+            background-color: #f0fdf4 !important;
+        }
+
+        .audit-incorrect {
+            background-color: #fff1f2 !important;
+        }
+
+        .badge-correct {
+            color: #15803d;
+            font-weight: bold;
+        }
+
+        .badge-incorrect {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+
+        .report-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 16px;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+            header.test-header, nav.passage-nav, main.test-container, footer.test-footer {
+                display: none !important;
+            }
+            .report-overlay {
+                position: static !important;
+                background: none !important;
+                padding: 0 !important;
+                display: block !important;
+            }
+            .report-sheet {
+                box-shadow: none !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .report-actions {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="test-header">
+        <div class="header-title-box">
+            <h1>IELTS Academic Reading: Paper 3</h1>
+            <p>Module 3: Dioptrics, Optical Engineering, and the Biomechanics of Human Vision (Lessons 12, 13 &amp; 14) • SMBP Grade 9 Science</p>
+        </div>
+        <div class="header-controls">
+            <div class="timer-display" id="timerBox" title="60-Minute Official Time Window">
+                <span>⏱</span> <span id="timerText">60:00</span>
+            </div>
+            <button class="btn btn-outline" id="vocabToggleBtn" title="Thai Bilingual Vocabulary Guide">📖 Vocabulary Bank</button>
+            <button class="btn btn-gold" id="submitTopBtn">Submit Test &amp; Generate Report</button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="passage-nav">
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-passage="1">Passage 1: Dioptric Boundaries (Q1–13)</button>
+            <button class="tab-btn" data-passage="2">Passage 2: Thin Lens Systems (Q14–26)</button>
+            <button class="tab-btn" data-passage="3">Passage 3: Physiological Optics (Q27–40)</button>
+        </div>
+        <div class="nav-tools">
+            <span class="badge" id="progressBadge">0 / 40 Answered</span>
+            <button class="palette-toggle-btn" id="openPaletteBtn">Question Palette ▾</button>
+        </div>
+    </nav>
+
+    <!-- Main Container: Split View -->
+    <main class="test-container">
+
+        <!-- Left Pane: Passages -->
+        <section class="pane pane-passage" id="passagePane">
+            
+            <!-- PASSAGE 1 -->
+            <article class="passage-content" id="passage1">
+                <div class="passage-header">
+                    <span class="passage-tag">Reading Passage 1 • Science Module 3 Lesson 12</span>
+                    <h2>Dioptric Boundary Transitions: Refractive Indices, Critical Angles, and Waveguide Physics</h2>
+                    <p class="subtitle">You should spend about 20 minutes on Questions 1–13, which are based on Reading Passage 1 below.</p>
+                </div>
+
+                <div class="passage-body">
+                    <p class="paragraph"><span class="p-marker">A</span> When an electromagnetic wave crosses the interface between two transparent media possessing disparate optical densities, its fundamental trajectory undergoes an abrupt angular deviation. This physical phenomenon, known as refraction, occurs because the propagation speed of light varies across different atomic lattices. In an unblemished vacuum, light travels at its cosmic maximum velocity of c ≈ 300,000 km/s. When penetrating tangible matter, electromagnetic photons undergo continuous absorption and delayed re-emission by surrounding atomic electron clouds, producing an effective deceleration. Optical density is quantitatively parameterized by the refractive index (n), a dimensionless scalar defined as the ratio of the speed of light in a vacuum (c) to its operational phase velocity within the given medium (v): n = c / v.</p>
+
+                    <p class="paragraph"><span class="p-marker">B</span> The directional bending of a refracted ray is governed by a strict invariant rule. When a light ray passes from an optically less dense medium into an optically denser medium—such as traveling from ambient air (n₁ ≈ 1.0) into water (n₂ ≈ 1.33) or crown glass (n₂ ≈ 1.5)—the wave decelerates. This deceleration forces the refracted ray to bend toward the normal line, producing an angle of refraction (θ₂) that is strictly smaller than the angle of incidence (θ₁). Conversely, when a light ray emerges from an optically denser medium into a less dense medium (such as exiting glass into air), the wave accelerates, causing the ray to bend away from the normal line, rendering θ₂ greater than θ₁. This outward deviation is responsible for the apparent depth illusion: underwater objects like submerged fish appear elevated closer to the water's surface than their actual physical coordinates.</p>
+
+                    <!-- SVG 1: Snell's Law & Total Internal Reflection -->
+                    <div class="academic-figure">
+                        <svg viewBox="0 0 760 240" width="100%" height="230" xmlns="http://www.w3.org/2000/svg" style="background:#fcfbf9; border-radius:4px;">
+                            <text x="380" y="22" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b2545">SNELL'S LAW REFRACTION, CRITICAL ANGLE &amp; TOTAL INTERNAL REFLECTION</text>
+                            
+                            <!-- Left: Refraction Toward/Away from Normal -->
+                            <g transform="translate(20, 35)">
+                                <text x="160" y="16" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#134074">1. Boundary Refraction (Air to Glass)</text>
+                                
+                                <!-- Boundary Line -->
+                                <line x1="20" y1="110" x2="300" y2="110" stroke="#334155" stroke-width="2.5" />
+                                <text x="35" y="100" font-family="'Times New Roman', serif" font-size="10" fill="#64748b">Air (n₁ = 1.0)</text>
+                                <text x="35" y="128" font-family="'Times New Roman', serif" font-size="10" fill="#0369a1">Glass (n₂ = 1.5)</text>
+
+                                <!-- Normal Line -->
+                                <line x1="160" y1="30" x2="160" y2="190" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4,4" />
+                                <text x="160" y="24" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">Normal</text>
+
+                                <!-- Incident Ray -->
+                                <line x1="80" y1="40" x2="160" y2="110" stroke="#2563eb" stroke-width="2.5" />
+                                <text x="90" y="65" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#1e40af">Incident (θ₁ = 30°)</text>
+
+                                <!-- Refracted Ray (bends toward normal) -->
+                                <line x1="160" y1="110" x2="210" y2="190" stroke="#16a34a" stroke-width="2.5" />
+                                <text x="220" y="165" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#15803d">Refracted (θ₂ ≈ 19.5°)</text>
+                            </g>
+
+                            <!-- Vertical Divider -->
+                            <line x1="355" y1="45" x2="355" y2="220" stroke="#cbd5e1" stroke-width="1.5" />
+
+                            <!-- Right: Critical Angle & Total Internal Reflection -->
+                            <g transform="translate(380, 35)">
+                                <text x="175" y="16" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#134074">2. Critical Angle (θc) &amp; Total Internal Reflection</text>
+                                
+                                <!-- Boundary Line -->
+                                <line x1="20" y1="110" x2="330" y2="110" stroke="#334155" stroke-width="2.5" />
+                                <text x="35" y="100" font-family="'Times New Roman', serif" font-size="10" fill="#64748b">Air (Less Dense, n = 1.0)</text>
+                                <text x="35" y="128" font-family="'Times New Roman', serif" font-size="10" fill="#0369a1">Water/Glass (Denser, n &gt; 1.0)</text>
+
+                                <!-- Normal Line -->
+                                <line x1="170" y1="30" x2="170" y2="190" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,4" />
+
+                                <!-- Ray 1: Critical Angle Ray -->
+                                <line x1="70" y1="190" x2="170" y2="110" stroke="#ea580c" stroke-width="2" />
+                                <line x1="170" y1="110" x2="320" y2="110" stroke="#ea580c" stroke-width="3" />
+                                <text x="100" y="160" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#ea580c">Ray at θ = θc (Refracts at 90°)</text>
+
+                                <!-- Ray 2: Total Internal Reflection Ray (θ > θc) -->
+                                <line x1="100" y1="195" x2="170" y2="110" stroke="#7c3aed" stroke-width="2.5" />
+                                <line x1="170" y1="110" x2="240" y2="195" stroke="#7c3aed" stroke-width="2.5" />
+                                <text x="245" y="175" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#7c3aed">TIR: 100% Reflected (θ &gt; θc)</text>
+                            </g>
+                        </svg>
+                        <figcaption>Figure 1.1: Left: Ray refraction toward the normal when entering a denser medium. Right: The critical angle producing 90° surface skimming, and total internal reflection (TIR) occurring when incidence exceeds θc.</figcaption>
+                    </div>
+
+                    <p class="paragraph"><span class="p-marker">C</span> The exact mathematical relationship between incident and refracted angles across media is codified by Snell's Law: n₁ × sin(θ₁) = n₂ × sin(θ₂). For instance, when a beam originating in air (n₁ = 1.0) strikes optical glass (n₂ = 1.5) at an incidence angle of 30 degrees, Snell's equation dictates: 1.0 × sin(30°) = 1.5 × sin(θ₂). Since sin(30°) = 0.5, dividing by 1.5 yields sin(θ₂) ≈ 0.333, corresponding to a refracted angle θ₂ of approximately 19.5 degrees. This precise angular shift allows optical engineers to design distortion-free camera objectives and corrective prescription lenses.</p>
+
+                    <p class="paragraph"><span class="p-marker">D</span> When light attempts to pass from an optically denser medium into a less dense medium, an extraordinary optical threshold emerges. As the angle of incidence is gradually expanded, the angle of refraction bends progressively further away from the normal until it reaches exactly 90 degrees, traveling parallel along the material interface. The specific angle of incidence that produces this 90-degree refraction is termed the critical angle (θc). Every transparent substance paired with air possesses a distinct critical angle: water-air boundaries exhibit θc ≈ 48.8 degrees; crown glass exhibits θc ≈ 42 degrees; while dense natural diamond exhibits a remarkably narrow critical angle of θc ≈ 24.4 degrees.</p>
+
+                    <p class="paragraph"><span class="p-marker">E</span> If light propagating within the denser medium strikes the interface at an angle strictly greater than the critical angle (θ₁ &gt; θc), refraction becomes mathematically impossible. Zero light escapes into the rarer external medium; instead, 100% of the radiant energy is perfectly reflected back into the denser interior. This phenomenon is known as Total Internal Reflection (TIR). Under TIR conditions, the transparent boundary behaves as a flawless, lossless mirror.</p>
+
+                    <p class="paragraph"><span class="p-marker">F</span> Total internal reflection forms the foundation of modern telecommunications through fiber-optic cables. These cables consist of an ultra-pure glass cylindrical core encased within a protective glass cladding of lower refractive index. Laser light pulses carrying digital data are injected into the core at angles exceeding the critical angle. As the pulses advance, they undergo endless total internal reflections against the core-cladding boundary, traveling hundreds of kilometers across continental networks and undersea abysses with virtually zero signal loss. Similarly, the brilliant sparkle of a cut diamond stems from its exceptionally high refractive index (n ≈ 2.42) and minute critical angle (24.4°): ambient light entering the crown is trapped inside, reflecting repeatedly across faceted pavilion walls before exiting upward into the admirer's eye. On desert plains or asphalt highways, atmospheric mirages occur via a related mechanism: layers of searing ground air possess lower density than cooler air above, bending downward skylight rays via continuous refraction and total internal reflection upward, creating the shimmering optical illusion of a surface water pool.</p>
+
+                    <table class="academic-table">
+                        <thead>
+                            <tr>
+                                <th>Transparent Substance</th>
+                                <th>Refractive Index (n)</th>
+                                <th>Light Speed in Medium</th>
+                                <th>Critical Angle in Air (θc)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Air (STP)</strong></td>
+                                <td>1.0003 (≈ 1.0)</td>
+                                <td>≈ 300,000 km/s</td>
+                                <td>— (Reference Medium)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Water</strong></td>
+                                <td>1.33</td>
+                                <td>≈ 225,000 km/s</td>
+                                <td>48.8°</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Crown Glass</strong></td>
+                                <td>1.52</td>
+                                <td>≈ 197,000 km/s</td>
+                                <td>41.1° (≈ 42°)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dense Flint Glass</strong></td>
+                                <td>1.66</td>
+                                <td>≈ 181,000 km/s</td>
+                                <td>37.0°</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Natural Diamond</strong></td>
+                                <td>2.42</td>
+                                <td>≈ 124,000 km/s</td>
+                                <td>24.4°</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="formula-callout">
+                        <strong>Governing Scientific Laws: Refraction and Total Internal Reflection</strong>
+                        <div class="formula-display">Snell's Law: n₁ × sin(θ₁) = n₂ × sin(θ₂) &nbsp; | &nbsp; Critical Angle: sin(θc) = n₂ / n₁ (where n₁ &gt; n₂)</div>
+                        Where <strong>n₁</strong> is the refractive index of the initial incident medium, <strong>θ₁</strong> is the angle of incidence, <strong>n₂</strong> is the refractive index of the second medium, and <strong>θ₂</strong> is the angle of refraction. When light attempts to pass from a denser medium (n₁) into a rarer medium (n₂) at θ₁ &gt; θc, total internal reflection occurs.
+                    </div>
+                </div>
+            </article>
+
+            <!-- PASSAGE 2 -->
+            <article class="passage-content" id="passage2" style="display:none;">
+                <div class="passage-header">
+                    <span class="passage-tag">Reading Passage 2 • Science Module 3 Lesson 13</span>
+                    <h2>Dioptric Systems: Refractive Curvature and Focal Transformations in Thin Lenses</h2>
+                    <p class="subtitle">You should spend about 20 minutes on Questions 14–26, which are based on Reading Passage 2 below.</p>
+                </div>
+
+                <div class="passage-body">
+                    <p class="paragraph"><span class="p-marker">A</span> A lens is a transparent optical device bounded by at least one curved surface configured to refract light waves in a controlled geometric pattern. Unlike plane glass windowpanes whose parallel surfaces merely displace exiting rays without altering their mutual divergence, the curved topography of a lens forces incoming parallel light rays to change direction relative to one another. The magnitude of this dioptric power is directly governed by surface curvature: the steeper the curve of a lens, the more sharply light rays bend as they traverse its glass-air boundaries.</p>
+
+                    <p class="paragraph"><span class="p-marker">B</span> Optical science establishes two primary structural archetypes of lenses: convex lenses and concave lenses. A convex lens—also termed a converging lens—is characterized by being thicker in its central zone and thinner at its peripheral edges. When a collimated beam of parallel light rays strikes a convex lens parallel to its central optical axis, the refraction across its entry and exit curves bends the rays inward, focusing them to intersect at a single shared point on the opposite side called the focal point (F). The distance measured along the optical axis from the lens center to this focal point is the focal length (f). In optical sign conventions, converging convex lenses are assigned a positive focal length (+f).</p>
+
+                    <!-- SVG 2: Thin Lens Ray Tracing (Convex vs. Concave) -->
+                    <div class="academic-figure">
+                        <svg viewBox="0 0 760 250" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" style="background:#fcfbf9; border-radius:4px;">
+                            <text x="380" y="22" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b2545">THIN LENS RAY TRACING: CONVEX (CONVERGING) VS. CONCAVE (DIVERGING)</text>
+                            
+                            <!-- Left: Convex Converging Lens -->
+                            <g transform="translate(20, 35)">
+                                <text x="160" y="16" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#134074">1. Convex Lens (Converging, +f)</text>
+                                
+                                <!-- Optical Axis -->
+                                <line x1="10" y1="120" x2="310" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4" />
+
+                                <!-- Lens Profile -->
+                                <path d="M 160 40 Q 180 120 160 200 Q 140 120 160 40" fill="#e0f2fe" stroke="#0b2545" stroke-width="2.5" />
+                                <text x="160" y="32" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#0b2545" text-anchor="middle">Convex Lens</text>
+
+                                <!-- Focal Points F and 2F -->
+                                <circle cx="100" cy="120" r="2.5" fill="#0b2545" /><text x="100" y="135" font-family="'Times New Roman', serif" font-size="9" fill="#0b2545" text-anchor="middle">F₁</text>
+                                <circle cx="40" cy="120" r="2.5" fill="#0b2545" /><text x="40" y="135" font-family="'Times New Roman', serif" font-size="9" fill="#0b2545" text-anchor="middle">2F₁</text>
+                                <circle cx="220" cy="120" r="2.5" fill="#dc2626" /><text x="220" y="135" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">F₂</text>
+                                <circle cx="280" cy="120" r="2.5" fill="#0b2545" /><text x="280" y="135" font-family="'Times New Roman', serif" font-size="9" fill="#0b2545" text-anchor="middle">2F₂</text>
+
+                                <!-- Object at do > 2F -->
+                                <line x1="25" y1="120" x2="25" y2="70" stroke="#2563eb" stroke-width="3" />
+                                <text x="25" y="62" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">Object</text>
+
+                                <!-- Ray 1: Parallel -> through F2 -->
+                                <line x1="25" y1="70" x2="160" y2="70" stroke="#2563eb" stroke-width="1.5" />
+                                <line x1="160" y1="70" x2="250" y2="145" stroke="#2563eb" stroke-width="1.5" />
+
+                                <!-- Ray 2: Through center -> straight -->
+                                <line x1="25" y1="70" x2="250" y2="145" stroke="#16a34a" stroke-width="1.5" />
+
+                                <!-- Inverted Real Image between F2 and 2F2 -->
+                                <line x1="250" y1="120" x2="250" y2="145" stroke="#ea580c" stroke-width="2.5" />
+                                <text x="250" y="162" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#c2410c" text-anchor="middle">Real Image</text>
+                                <text x="250" y="174" font-family="'Times New Roman', serif" font-size="8" fill="#64748b" text-anchor="middle">(Inverted &amp; Diminished)</text>
+                            </g>
+
+                            <!-- Vertical Divider -->
+                            <line x1="355" y1="45" x2="355" y2="230" stroke="#cbd5e1" stroke-width="1.5" />
+
+                            <!-- Right: Concave Diverging Lens -->
+                            <g transform="translate(380, 35)">
+                                <text x="175" y="16" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#134074">2. Concave Lens (Diverging, -f)</text>
+                                
+                                <!-- Optical Axis -->
+                                <line x1="10" y1="120" x2="330" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4" />
+
+                                <!-- Concave Lens Profile -->
+                                <path d="M 170 40 Q 155 120 170 200 L 190 200 Q 175 120 190 40 Z" fill="#e0f2fe" stroke="#0b2545" stroke-width="2.5" />
+                                <text x="180" y="32" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#0b2545" text-anchor="middle">Concave Lens</text>
+
+                                <!-- Virtual Focal Point F1 -->
+                                <circle cx="100" cy="120" r="2.5" fill="#dc2626" /><text x="100" y="135" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">Virtual F₁</text>
+
+                                <!-- Object in front -->
+                                <line x1="40" y1="120" x2="40" y2="60" stroke="#2563eb" stroke-width="3" />
+                                <text x="40" y="52" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">Object</text>
+
+                                <!-- Ray 1: Parallel -> diverges as if from F1 -->
+                                <line x1="40" y1="60" x2="175" y2="60" stroke="#2563eb" stroke-width="1.5" />
+                                <line x1="175" y1="60" x2="280" y2="20" stroke="#2563eb" stroke-width="1.5" />
+                                <line x1="175" y1="60" x2="100" y2="120" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3" />
+
+                                <!-- Ray 2: Straight through center -->
+                                <line x1="40" y1="60" x2="250" y2="153" stroke="#16a34a" stroke-width="1.5" />
+
+                                <!-- Virtual Upright Diminished Image -->
+                                <line x1="125" y1="120" x2="125" y2="98" stroke="#ea580c" stroke-width="2" />
+                                <text x="125" y="90" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#c2410c" text-anchor="middle">Virtual Image</text>
+                                <text x="125" y="172" font-family="'Times New Roman', serif" font-size="8" fill="#64748b" text-anchor="middle">(Always Upright &amp; Smaller)</text>
+                            </g>
+                        </svg>
+                        <figcaption>Figure 2.1: Ray tracing geometry for a convex converging lens forming an inverted real image versus a concave diverging lens producing an upright virtual diminished image.</figcaption>
+                    </div>
+
+                    <p class="paragraph"><span class="p-marker">C</span> The operational behavior of a convex lens closely mirrors the catoptrics of a concave mirror: the physical nature, size, and orientation of the formed image depend entirely upon the object distance (do) relative to the focal length (f):
+                    <br>• Object positioned beyond two focal lengths (do &gt; 2f): Incoming rays converge on the opposing side to form a real, inverted (upside-down), and diminished (smaller) image located between 1f and 2f. This optical geometry operates within standard photographic camera sensors and the human eyeball.
+                    <br>• Object positioned between one and two focal lengths (f &lt; do &lt; 2f): The refracted rays converge further back to produce a real, inverted, but magnified (larger) image positioned beyond 2f. This configuration powers digital cinema and classroom multimedia projectors.
+                    <br>• Object positioned inside one focal length (do &lt; f): Refracted rays exit the lens diverging away from one another; the human brain extrapolates them backward to their apparent origin on the same side as the object, creating a virtual, upright, and magnified image. This is the operating principle of a handheld reading magnifying glass.</p>
+
+                    <p class="paragraph"><span class="p-marker">D</span> A concave lens—or diverging lens—is characterized by being thinner in its central region and thicker at its outer edges. When parallel incident light rays traverse a concave lens, refraction bends them outward, diverging away from the optical axis. If these spreading rays are traced backward behind the lens, they appear to originate from a virtual focal point located on the incident side of the lens. Consequently, concave lenses possess a negative focal length (-f). Crucially, a concave lens always produces an image that is virtual, upright, and smaller (diminished) than the physical object, regardless of the distance from which the object is placed.</p>
+
+                    <p class="paragraph"><span class="p-marker">E</span> In applied optical engineering, concave and convex lenses are rarely utilized in complete isolation; rather, they are combined into compound multi-element dioptric systems. Combining convex objectives with concave eyepieces allows astronomical refracting telescopes and compound optical microscopes to correct chromatic and spherical aberrations, achieving pristine visual resolution across millimeter and cosmic scales. Furthermore, concave lenses serve as the primary corrective eyewear for human myopia (nearsightedness), diverging incoming light rays slightly before they reach the eye so that distant images focus crisply upon the retinal plane.</p>
+
+                    <table class="academic-table">
+                        <thead>
+                            <tr>
+                                <th>Lens Geometry</th>
+                                <th>Object Position (do)</th>
+                                <th>Image Classification</th>
+                                <th>Orientation</th>
+                                <th>Relative Size</th>
+                                <th>Applied Technology</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Convex (Converging)</strong></td>
+                                <td>Beyond 2f (do &gt; 2f)</td>
+                                <td>Real</td>
+                                <td>Inverted</td>
+                                <td>Smaller (&lt; 1×)</td>
+                                <td>Camera sensors, human eye</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Convex (Converging)</strong></td>
+                                <td>Between 1f and 2f</td>
+                                <td>Real</td>
+                                <td>Inverted</td>
+                                <td>Larger (&gt; 1×)</td>
+                                <td>Classroom projectors, cinema</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Convex (Converging)</strong></td>
+                                <td>Inside 1f (do &lt; f)</td>
+                                <td>Virtual</td>
+                                <td>Upright</td>
+                                <td>Larger (&gt; 1×)</td>
+                                <td>Handheld magnifying glass</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Concave (Diverging)</strong></td>
+                                <td>Any distance</td>
+                                <td>Virtual</td>
+                                <td>Upright</td>
+                                <td>Smaller (&lt; 1×)</td>
+                                <td>Eyeglasses for myopia, peepholes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="formula-callout">
+                        <strong>Governing Scientific Laws: The Gaussian Thin Lens Equation &amp; Magnification</strong>
+                        <div class="formula-display">(1 / f) = (1 / do) + (1 / di) &nbsp; and &nbsp; M = (hi / ho) = -(di / do)</div>
+                        Where <strong>f</strong> is focal length (positive for convex, negative for concave), <strong>do</strong> is object distance, <strong>di</strong> is image distance (positive for real images on the opposite side, negative for virtual images on the same side), <strong>M</strong> is linear magnification, <strong>ho</strong> is object height, and <strong>hi</strong> is image height.
+                    </div>
+                </div>
+            </article>
+
+            <!-- PASSAGE 3 -->
+            <article class="passage-content" id="passage3" style="display:none;">
+                <div class="passage-header">
+                    <span class="passage-tag">Reading Passage 3 • Science Module 3 Lesson 14</span>
+                    <h2>Physiological Optics: Anatomical Refraction, Accommodation Biomechanics, and Retinal Photoreception</h2>
+                    <p class="subtitle">You should spend about 20 minutes on Questions 27–40, which are based on Reading Passage 3 below.</p>
+                </div>
+
+                <div class="passage-body">
+                    <p class="paragraph"><span class="p-marker">A</span> The human visual organ is an exquisitely calibrated biological dioptric system that channels, focuses, and transduces ambient electromagnetic radiation into neurological information. To perceive an object, light waves radiating or reflecting from that object must traverse a sequence of living refracting tissues before generating electrochemical nerve impulses destined for the cerebral cortex. The complete anatomical pathway functions analogously to a high-precision digital camera, seamlessly harmonizing static physical refraction with dynamic biological autofocus.</p>
+
+                    <p class="paragraph"><span class="p-marker">B</span> The initial and most powerful refractive element of the eye is the cornea—a transparent, dome-shaped convex layer of specialized cellular tissue located on the exterior anterior surface of the eyeball. Because the refractive index transition from ambient air (n ≈ 1.0) into the moist corneal tissue (n ≈ 1.376) is exceptionally steep, the cornea provides approximately 70% to 75% of the eye's total refractive converging power (roughly +40 to +43 diopters). After traversing the cornea and the aqueous humor, incoming light rays pass through the pupil, a circular black aperture in the center of the eye.</p>
+
+                    <!-- SVG 3: Eye Anatomy & Accommodation -->
+                    <div class="academic-figure">
+                        <svg viewBox="0 0 760 260" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" style="background:#fcfbf9; border-radius:4px;">
+                            <text x="380" y="22" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b2545">PHYSIOLOGICAL OPTICS: ANATOMY OF HUMAN EYE &amp; DYNAMIC ACCOMMODATION</text>
+                            
+                            <!-- Left: Eye Cross-Section Anatomy -->
+                            <g transform="translate(20, 35)">
+                                <text x="160" y="16" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#134074">1. Ocular Refractive Anatomy</text>
+                                
+                                <!-- Eyeball Outer Shell -->
+                                <circle cx="160" cy="125" r="75" fill="#f8fafc" stroke="#475569" stroke-width="2" />
+                                
+                                <!-- Cornea Bulge on Left -->
+                                <path d="M 95 85 Q 60 125 95 165" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5" />
+                                <text x="45" y="128" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#0284c7">Cornea</text>
+
+                                <!-- Iris & Pupil -->
+                                <line x1="110" y1="80" x2="110" y2="105" stroke="#b45309" stroke-width="4" />
+                                <line x1="110" y1="145" x2="110" y2="170" stroke="#b45309" stroke-width="4" />
+                                <text x="110" y="74" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#b45309" text-anchor="middle">Iris</text>
+                                <text x="100" y="128" font-family="'Times New Roman', serif" font-size="8" fill="#1e293b">Pupil</text>
+
+                                <!-- Crystalline Lens -->
+                                <ellipse cx="125" cy="125" rx="10" ry="22" fill="#bae6fd" stroke="#0369a1" stroke-width="1.8" />
+                                <text x="135" y="100" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#0369a1">Lens</text>
+
+                                <!-- Ciliary Muscle Blocks -->
+                                <rect x="118" y="94" width="14" height="8" fill="#dc2626" rx="2" />
+                                <rect x="118" y="148" width="14" height="8" fill="#dc2626" rx="2" />
+                                <text x="155" y="92" font-family="'Times New Roman', serif" font-size="8" fill="#dc2626">Ciliary Muscle</text>
+
+                                <!-- Retina Layer on Back Interior -->
+                                <path d="M 210 75 Q 240 125 210 175" fill="none" stroke="#ea580c" stroke-width="3" />
+                                <text x="210" y="65" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#ea580c" text-anchor="middle">Retina</text>
+
+                                <!-- Optic Nerve Exiting Back -->
+                                <path d="M 230 115 L 280 110 L 280 140 L 230 135" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+                                <text x="285" y="128" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#a16207">Optic Nerve</text>
+                            </g>
+
+                            <!-- Vertical Divider -->
+                            <line x1="355" y1="45" x2="355" y2="230" stroke="#cbd5e1" stroke-width="1.5" />
+
+                            <!-- Right: Biomechanics of Accommodation -->
+                            <g transform="translate(380, 35)">
+                                <text x="175" y="16" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#134074">2. Accommodation Biomechanics (Near vs. Far)</text>
+                                
+                                <!-- Far Vision Mode -->
+                                <g transform="translate(20, 35)">
+                                    <text x="0" y="14" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#0b2545">A. Viewing Distant Objects (Distant Focus):</text>
+                                    <ellipse cx="60" cy="50" rx="6" ry="24" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5" />
+                                    <text x="80" y="45" font-family="'Times New Roman', serif" font-size="9" fill="#334155">• Ciliary muscles relax</text>
+                                    <text x="80" y="58" font-family="'Times New Roman', serif" font-size="9" fill="#334155">• Lens flattens (thinner profile)</text>
+                                    <text x="80" y="71" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#15803d">• Longer focal length, crisp distant focus</text>
+                                </g>
+
+                                <!-- Near Vision Mode -->
+                                <g transform="translate(20, 125)">
+                                    <text x="0" y="14" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#0b2545">B. Viewing Nearby Objects (Close Reading):</text>
+                                    <ellipse cx="60" cy="50" rx="14" ry="22" fill="#7dd3fc" stroke="#0369a1" stroke-width="2" />
+                                    <text x="85" y="45" font-family="'Times New Roman', serif" font-size="9" fill="#334155">• Ciliary muscles contract</text>
+                                    <text x="85" y="58" font-family="'Times New Roman', serif" font-size="9" fill="#334155">• Lens thickens (rounder profile)</text>
+                                    <text x="85" y="71" font-family="'Times New Roman', serif" font-size="9" font-weight="bold" fill="#ea580c">• Shorter focal length, higher optical power</text>
+                                </g>
+                            </g>
+                        </svg>
+                        <figcaption>Figure 3.1: Anatomical cross-section of the human eye showing corneal and crystalline dioptrics alongside the biomechanical accommodation states of the crystalline lens.</figcaption>
+                    </div>
+
+                    <p class="paragraph"><span class="p-marker">C</span> The pupil's diameter is regulated dynamically by the iris, the pigmented circular muscle ring that defines eye color. Operating as an autonomous optical aperture diaphragm, the iris controls pupillary dilation and constriction. In bright sunlight, circular sphincter muscles contract to shrink the pupil diameter (to approx. 2 mm), safeguarding sensitive retinal cells against photic overexposure. In dim twilight or darkened rooms, radial dilator muscles pull outward to enlarge the pupil (up to 8 mm), admitting the maximum flux of available photons.</p>
+
+                    <p class="paragraph"><span class="p-marker">D</span> Immediately behind the iris resides the crystalline lens—a flexible, transparent biconvex protein structure. While the cornea provides fixed dioptric power, the crystalline lens provides variable fine-tuning through the physiological process of accommodation. Surrounding the lens perimeter is a ring of ciliary muscles connected via delicate suspensory zonular fibers. When an observer gazes at a distant mountain, the ciliary muscles relax, pulling the zonules taut and stretching the flexible lens into a thinner, flatter profile with a long focal length. Conversely, when shifting focus to read a handheld book nearby, the ciliary muscles actively contract, relieving tension on the zonules and allowing the elastic lens capsule to rebound into a steeper, rounder, thicker profile with a shorter focal length and higher converging power (+15 to +20 additional diopters).</p>
+
+                    <p class="paragraph"><span class="p-marker">E</span> Together, the cornea and crystalline lens converge incoming light rays directly onto the retina, a delicate neural tissue membrane lining the posterior inner surface of the eyeball. The inverted real image projected onto the retina is absorbed by approximately 126 million specialized photoreceptor cells classified into two distinct neurobiological varieties: rod cells and cone cells. Rod cells (approx. 120 million) possess immense scotopic sensitivity; they respond to minimal photon quantities, providing human night vision in monochrome shades of gray, but are incapable of discerning color. Cone cells (approx. 6 million) operate under photopic daylight illumination, granting high visual acuity and chromatic sensation. Humans possess three distinct sub-populations of cone cells containing differing photopigments tuned to specific visible wavebands: S-cones (short-wavelength blue, peak ≈ 420 nm), M-cones (medium-wavelength green, peak ≈ 530 nm), and L-cones (long-wavelength red, peak ≈ 560 nm).</p>
+
+                    <p class="paragraph"><span class="p-marker">F</span> The sensation of color arises from differential photon absorption and neural synthesis. Composite white light from the Sun contains all visible wavelengths combined. When white light illuminates an opaque object, the chemical pigments within the object absorb specific wavelengths while reflecting others. A ripe red strawberry reflects light waves of approximately 650–700 nm into the eye while absorbing green and blue frequencies; these reflected red waves excite L-cones in the retina, prompting electrical action potentials. Similarly, a yellow banana reflects both green and red wavelengths while absorbing blue. Photoreceptor chemical reactions synthesize these signals, which are channeled along roughly one million axonal nerve fibers comprising the optic nerve directly into the brain's visual cortex, which flips the inverted retinal image right-side up and generates the conscious sensation of color.</p>
+
+                    <p class="paragraph"><span class="p-marker">G</span> Prolonged focus on digital smartphone displays requires continuous sustained contraction of the ciliary muscles, inducing visual asthenopia (eyestrain). Optometrists advocate the "20-20-20 rule" for ergonomic eye health: every 20 minutes, individuals should shift their visual focus onto an object at least 20 feet (approx. 6 meters) away for a minimum of 20 seconds, allowing ciliary muscles to relax into their natural unaccommodated state.</p>
+
+                    <table class="academic-table">
+                        <thead>
+                            <tr>
+                                <th>Anatomical Component</th>
+                                <th>Structural Description</th>
+                                <th>Primary Physiological Function</th>
+                                <th>Camera Mechanical Analog</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cornea</strong></td>
+                                <td>Transparent exterior convex tissue</td>
+                                <td>Provides ~70% of static converging refraction</td>
+                                <td>Front glass objective element</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Iris &amp; Pupil</strong></td>
+                                <td>Pigmented muscular ring &amp; circular opening</td>
+                                <td>Regulates incoming light flux via dilation</td>
+                                <td>Adjustable aperture diaphragm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Crystalline Lens</strong></td>
+                                <td>Flexible transparent biconvex protein</td>
+                                <td>Dynamic focal accommodation for near/far</td>
+                                <td>Internal autofocus lens group</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ciliary Muscles</strong></td>
+                                <td>Circumferential smooth muscle ring</td>
+                                <td>Contracts (thickens lens) / Relaxes (flattens)</td>
+                                <td>Autofocus drive servo-motor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Retina (Rods/Cones)</strong></td>
+                                <td>Light-sensitive neural membrane</td>
+                                <td>Transduces photons into electrical signals</td>
+                                <td>Digital CMOS / CCD image sensor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Optic Nerve</strong></td>
+                                <td>Bundle of ~1 million neural axons</td>
+                                <td>Transmits electrochemical signals to brain</td>
+                                <td>Data bus cable to image processor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="formula-callout">
+                        <strong>Governing Scientific Laws: Optical Power and Focal Accommodation</strong>
+                        <div class="formula-display">Optical Power (P) = 1 / f (in Diopters, D = m⁻¹) &nbsp; | &nbsp; P_total = P_cornea + P_lens</div>
+                        Where <strong>P</strong> is lens refractive power in Diopters (D), and <strong>f</strong> is focal length in meters. When shifting from distant vision to close reading, ciliary muscle contraction thickens the crystalline lens, shortening focal length (f decreases) and boosting total ocular optical power from approximately +60 D to +75 D.
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Right Pane: Interactive Question Booklet -->
+        <section class="pane pane-questions" id="questionPane">
+
+            <!-- QUESTIONS FOR PASSAGE 1 (Q1 - Q13) -->
+            <div class="question-group" id="qGroupPassage1">
+                <div class="question-section-banner">
+                    <h3>Questions 1–6: True / False / Not Given</h3>
+                    <p>Do the following statements agree with the information given in Reading Passage 1? Write <strong>TRUE</strong> if the statement agrees, <strong>FALSE</strong> if it contradicts, or <strong>NOT GIVEN</strong> if there is no information.</p>
+                </div>
+
+                <!-- Q1 -->
+                <div class="question-card" id="card_q1">
+                    <div class="question-text"><span class="question-num">1.</span> When light travels from air into liquid water, its propagation speed decreases.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q1" value="TRUE"> TRUE</label>
+                        <label class="option-label"><input type="radio" name="q1" value="FALSE"> FALSE</label>
+                        <label class="option-label"><input type="radio" name="q1" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q1">
+                        <strong>Correct Answer: TRUE</strong><br>
+                        <em>Evidence:</em> Paragraph B confirms that when traveling from air into water, "the wave decelerates" from 300,000 km/s to roughly 225,000 km/s.
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-card" id="card_q2">
+                    <div class="question-text"><span class="question-num">2.</span> A light ray passing from an optically denser medium into a less dense medium bends toward the normal line.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q2" value="TRUE"> TRUE</label>
+                        <label class="option-label"><input type="radio" name="q2" value="FALSE"> FALSE</label>
+                        <label class="option-label"><input type="radio" name="q2" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q2">
+                        <strong>Correct Answer: FALSE</strong><br>
+                        <em>Evidence:</em> Paragraph B states that when light emerges from denser into less dense media, "the wave accelerates, causing the ray to bend away from the normal line".
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card" id="card_q3">
+                    <div class="question-text"><span class="question-num">3.</span> Submerged aquatic animals appear closer to the surface than their true depth due to light bending away from the normal upon exiting water into air.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q3" value="TRUE"> TRUE</label>
+                        <label class="option-label"><input type="radio" name="q3" value="FALSE"> FALSE</label>
+                        <label class="option-label"><input type="radio" name="q3" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q3">
+                        <strong>Correct Answer: TRUE</strong><br>
+                        <em>Evidence:</em> Paragraph B affirms: "This outward deviation is responsible for the apparent depth illusion: underwater objects like submerged fish appear elevated closer to the water's surface".
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-card" id="card_q4">
+                    <div class="question-text"><span class="question-num">4.</span> Crown glass possesses a smaller critical angle in air than natural diamond.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q4" value="TRUE"> TRUE</label>
+                        <label class="option-label"><input type="radio" name="q4" value="FALSE"> FALSE</label>
+                        <label class="option-label"><input type="radio" name="q4" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q4">
+                        <strong>Correct Answer: FALSE</strong><br>
+                        <em>Evidence:</em> Paragraph D notes that crown glass has a critical angle of about 42 degrees, whereas natural diamond exhibits a much smaller critical angle of 24.4 degrees.
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-card" id="card_q5">
+                    <div class="question-text"><span class="question-num">5.</span> Total internal reflection can only occur when light is propagating within an optically denser medium attempting to cross into a less dense medium.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q5" value="TRUE"> TRUE</label>
+                        <label class="option-label"><input type="radio" name="q5" value="FALSE"> FALSE</label>
+                        <label class="option-label"><input type="radio" name="q5" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q5">
+                        <strong>Correct Answer: TRUE</strong><br>
+                        <em>Evidence:</em> Paragraph D &amp; E specify that TIR occurs when light attempts to pass "from an optically denser medium into a less dense medium" at θ₁ &gt; θc.
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-card" id="card_q6">
+                    <div class="question-text"><span class="question-num">6.</span> Submarine fiber-optic telecommunication cables require monthly cleaning to prevent algae from absorbing laser signals.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q6" value="TRUE"> TRUE</label>
+                        <label class="option-label"><input type="radio" name="q6" value="FALSE"> FALSE</label>
+                        <label class="option-label"><input type="radio" name="q6" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q6">
+                        <strong>Correct Answer: NOT GIVEN</strong><br>
+                        <em>Evidence:</em> Paragraph F discusses fiber-optic core-cladding transmission across undersea abysses, but makes no mention of algae cleaning or maintenance schedules.
+                    </div>
+                </div>
+
+                <div class="question-section-banner">
+                    <h3>Questions 7–10: Diagram / Process Completion</h3>
+                    <p>Complete the description of fiber-optic light propagation below. Choose <strong>NO MORE THAN TWO WORDS</strong> from Reading Passage 1 for each answer.</p>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-card" id="card_q7">
+                    <div class="question-text"><span class="question-num">7.</span> Digital information is transmitted through fiber cables in the form of pulses of <input type="text" class="text-input-field" name="q7" id="input_q7" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q7">
+                        <strong>Correct Answer: laser light / light</strong><br>
+                        <em>Evidence:</em> Paragraph F states: "Laser light pulses carrying digital data are injected into the core".
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-card" id="card_q8">
+                    <div class="question-text"><span class="question-num">8.</span> The cable consists of an ultra-pure glass central core surrounded by an external protective layer of glass <input type="text" class="text-input-field" name="q8" id="input_q8" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q8">
+                        <strong>Correct Answer: cladding</strong><br>
+                        <em>Evidence:</em> Paragraph F specifies: "a cylindrical core encased within a protective glass cladding of lower refractive index."
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-card" id="card_q9">
+                    <div class="question-text"><span class="question-num">9.</span> Light rays strike the boundary at an angle of incidence that is strictly greater than the <input type="text" class="text-input-field" name="q9" id="input_q9" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q9">
+                        <strong>Correct Answer: critical angle</strong><br>
+                        <em>Evidence:</em> Paragraph F confirms: "injected into the core at angles exceeding the critical angle."
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-card" id="card_q10">
+                    <div class="question-text"><span class="question-num">10.</span> As a result, the optical signal undergoes continuous <input type="text" class="text-input-field" name="q10" id="input_q10" placeholder="Type answer...">, traveling vast distances without loss of energy.</div>
+                    <div class="explanation-box" id="exp_q10">
+                        <strong>Correct Answer: total internal reflection / internal reflections</strong><br>
+                        <em>Evidence:</em> Paragraph F notes: "they undergo endless total internal reflections against the core-cladding boundary".
+                    </div>
+                </div>
+
+                <div class="question-section-banner">
+                    <h3>Questions 11–13: Sentence Completion</h3>
+                    <p>Complete the sentences below. Choose <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> from Reading Passage 1 for each answer.</p>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-card" id="card_q11">
+                    <div class="question-text"><span class="question-num">11.</span> The dimensionless scalar ratio comparing light speed in vacuum to light speed in a material is the <input type="text" class="text-input-field" name="q11" id="input_q11" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q11">
+                        <strong>Correct Answer: refractive index</strong><br>
+                        <em>Evidence:</em> Paragraph A defines: "Optical density is quantitatively parameterized by the refractive index (n)".
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-card" id="card_q12">
+                    <div class="question-text"><span class="question-num">12.</span> When light in air strikes glass at an angle of 30 degrees, Snell's Law predicts a refracted angle of approximately <input type="text" class="text-input-field" name="q12" id="input_q12" placeholder="Type answer..."> degrees.</div>
+                    <div class="explanation-box" id="exp_q12">
+                        <strong>Correct Answer: 19.5 / 19.5 degrees</strong><br>
+                        <em>Evidence:</em> Paragraph C calculates: "corresponding to a refracted angle θ₂ of approximately 19.5 degrees."
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-card" id="card_q13">
+                    <div class="question-text"><span class="question-num">13.</span> Diamond sparkle is enhanced by its exceptionally small critical angle in air of only <input type="text" class="text-input-field" name="q13" id="input_q13" placeholder="Type answer..."> degrees.</div>
+                    <div class="explanation-box" id="exp_q13">
+                        <strong>Correct Answer: 24.4 / 24.4 degrees</strong><br>
+                        <em>Evidence:</em> Paragraph D &amp; F highlight diamond's "minute critical angle of θc ≈ 24.4 degrees."
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUESTIONS FOR PASSAGE 2 (Q14 - Q26) -->
+            <div class="question-group" id="qGroupPassage2" style="display:none;">
+                <div class="question-section-banner">
+                    <h3>Questions 14–18: Matching Information</h3>
+                    <p>Reading Passage 2 has five paragraphs, <strong>A–E</strong>. Which paragraph contains the following information? You may use any letter more than once.</p>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-card" id="card_q14">
+                    <div class="question-text"><span class="question-num">14.</span> The physical reason steep lens curvature produces greater refractive bending.</div>
+                    <select class="select-input-field" name="q14" id="select_q14">
+                        <option value="">Select Paragraph...</option>
+                        <option value="A">Paragraph A</option>
+                        <option value="B">Paragraph B</option>
+                        <option value="C">Paragraph C</option>
+                        <option value="D">Paragraph D</option>
+                        <option value="E">Paragraph E</option>
+                    </select>
+                    <div class="explanation-box" id="exp_q14">
+                        <strong>Correct Answer: Paragraph A</strong><br>
+                        <em>Evidence:</em> Paragraph A states: "The magnitude of this dioptric power is directly governed by surface curvature: the steeper the curve of a lens, the more sharply light rays bend".
+                    </div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-card" id="card_q15">
+                    <div class="question-text"><span class="question-num">15.</span> A description of how convex lenses operate within photographic cameras and human eyes.</div>
+                    <select class="select-input-field" name="q15" id="select_q15">
+                        <option value="">Select Paragraph...</option>
+                        <option value="A">Paragraph A</option>
+                        <option value="B">Paragraph B</option>
+                        <option value="C">Paragraph C</option>
+                        <option value="D">Paragraph D</option>
+                        <option value="E">Paragraph E</option>
+                    </select>
+                    <div class="explanation-box" id="exp_q15">
+                        <strong>Correct Answer: Paragraph C</strong><br>
+                        <em>Evidence:</em> Paragraph C explains that an object placed beyond 2f forms a real, inverted, diminished image: "This optical geometry operates within standard photographic camera sensors and the human eyeball."
+                    </div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-card" id="card_q16">
+                    <div class="question-text"><span class="question-num">16.</span> The invariable optical characteristics of images produced by concave diverging lenses.</div>
+                    <select class="select-input-field" name="q16" id="select_q16">
+                        <option value="">Select Paragraph...</option>
+                        <option value="A">Paragraph A</option>
+                        <option value="B">Paragraph B</option>
+                        <option value="C">Paragraph C</option>
+                        <option value="D">Paragraph D</option>
+                        <option value="E">Paragraph E</option>
+                    </select>
+                    <div class="explanation-box" id="exp_q16">
+                        <strong>Correct Answer: Paragraph D</strong><br>
+                        <em>Evidence:</em> Paragraph D establishes: "Crucially, a concave lens always produces an image that is virtual, upright, and smaller (diminished) than the physical object".
+                    </div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-card" id="card_q17">
+                    <div class="question-text"><span class="question-num">17.</span> How multi-lens combinations mitigate optical distortions in telescopes and microscopes.</div>
+                    <select class="select-input-field" name="q17" id="select_q17">
+                        <option value="">Select Paragraph...</option>
+                        <option value="A">Paragraph A</option>
+                        <option value="B">Paragraph B</option>
+                        <option value="C">Paragraph C</option>
+                        <option value="D">Paragraph D</option>
+                        <option value="E">Paragraph E</option>
+                    </select>
+                    <div class="explanation-box" id="exp_q17">
+                        <strong>Correct Answer: Paragraph E</strong><br>
+                        <em>Evidence:</em> Paragraph E details combining convex and concave elements to "correct chromatic and spherical aberrations, achieving pristine visual resolution".
+                    </div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-card" id="card_q18">
+                    <div class="question-text"><span class="question-num">18.</span> The focal point convergence definition and positive focal length assignment of convex lenses.</div>
+                    <select class="select-input-field" name="q18" id="select_q18">
+                        <option value="">Select Paragraph...</option>
+                        <option value="A">Paragraph A</option>
+                        <option value="B">Paragraph B</option>
+                        <option value="C">Paragraph C</option>
+                        <option value="D">Paragraph D</option>
+                        <option value="E">Paragraph E</option>
+                    </select>
+                    <div class="explanation-box" id="exp_q18">
+                        <strong>Correct Answer: Paragraph B</strong><br>
+                        <em>Evidence:</em> Paragraph B defines focal point (F), focal length (f), and assigns positive focal length (+f) to converging convex lenses.
+                    </div>
+                </div>
+
+                <div class="question-section-banner">
+                    <h3>Questions 19–22: Table Completion</h3>
+                    <p>Complete the table below. Choose <strong>NO MORE THAN TWO WORDS</strong> from Reading Passage 2 for each answer.</p>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-card" id="card_q19">
+                    <div class="question-text"><span class="question-num">19.</span> When an object is placed between 1f and 2f of a convex lens, the resulting image is inverted and <input type="text" class="text-input-field" name="q19" id="input_q19" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q19">
+                        <strong>Correct Answer: magnified / larger</strong><br>
+                        <em>Evidence:</em> Paragraph C states: "The refracted rays converge further back to produce a real, inverted, but magnified (larger) image".
+                    </div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-card" id="card_q20">
+                    <div class="question-text"><span class="question-num">20.</span> Placing an object closer than one focal length (do &lt; f) transforms a convex lens into a handheld <input type="text" class="text-input-field" name="q20" id="input_q20" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q20">
+                        <strong>Correct Answer: magnifying glass</strong><br>
+                        <em>Evidence:</em> Paragraph C specifies: "creating a virtual, upright, and significantly magnified image. This is the operating principle of a handheld reading magnifying glass."
+                    </div>
+                </div>
+
+                <!-- Q21 -->
+                <div class="question-card" id="card_q21">
+                    <div class="question-text"><span class="question-num">21.</span> Unlike convex lenses, concave lenses are thinner in their central region and possess a <input type="text" class="text-input-field" name="q21" id="input_q21" placeholder="Type answer..."> focal length.</div>
+                    <div class="explanation-box" id="exp_q21">
+                        <strong>Correct Answer: negative</strong><br>
+                        <em>Evidence:</em> Paragraph D explains: "Consequently, concave lenses possess a negative focal length (-f)."
+                    </div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question-card" id="card_q22">
+                    <div class="question-text"><span class="question-num">22.</span> In ophthalmic eyewear, concave lenses are prescribed to correct <input type="text" class="text-input-field" name="q22" id="input_q22" placeholder="Type answer..."> by diverging incoming rays.</div>
+                    <div class="explanation-box" id="exp_q22">
+                        <strong>Correct Answer: myopia / nearsightedness</strong><br>
+                        <em>Evidence:</em> Paragraph E notes: "concave lenses serve as the primary corrective eyewear for human myopia (nearsightedness)".
+                    </div>
+                </div>
+
+                <div class="question-section-banner">
+                    <h3>Questions 23–26: Multiple Choice</h3>
+                    <p>Choose the correct letter, <strong>A, B, C, or D</strong>.</p>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question-card" id="card_q23">
+                    <div class="question-text"><span class="question-num">23.</span> How do parallel light rays behave after passing through a double convex lens?</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q23" value="A"> A. They diverge outward and never cross the optical axis.</label>
+                        <label class="option-label"><input type="radio" name="q23" value="B"> B. They bend inward and converge at a shared focal point.</label>
+                        <label class="option-label"><input type="radio" name="q23" value="C"> C. They transform completely into longitudinal sound vibrations.</label>
+                        <label class="option-label"><input type="radio" name="q23" value="D"> D. They reflect 100% backward due to specular coherence.</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q23">
+                        <strong>Correct Answer: B</strong><br>
+                        <em>Evidence:</em> Paragraph B confirms that refraction "bends the rays inward, focusing them to intersect at a single shared point on the opposite side called the focal point (F)."
+                    </div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="question-card" id="card_q24">
+                    <div class="question-text"><span class="question-num">24.</span> Which optical configuration is utilized in classroom digital video projectors?</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q24" value="A"> A. Convex lens with an object positioned between 1f and 2f.</label>
+                        <label class="option-label"><input type="radio" name="q24" value="B"> B. Concave lens with an object beyond 2f.</label>
+                        <label class="option-label"><input type="radio" name="q24" value="C"> C. Convex lens with an object placed inside 1f.</label>
+                        <label class="option-label"><input type="radio" name="q24" value="D"> D. Plane window glass with parallel polished faces.</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q24">
+                        <strong>Correct Answer: A</strong><br>
+                        <em>Evidence:</em> Paragraph C explains that placing an object between 1f and 2f produces a real, inverted, magnified image, which "powers digital cinema and classroom multimedia projectors."
+                    </div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="question-card" id="card_q25">
+                    <div class="question-text"><span class="question-num">25.</span> In the thin lens equation 1/f = 1/do + 1/di, what does a negative image distance (di &lt; 0) signify?</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q25" value="A"> A. The image is real and projected on a distant screen.</label>
+                        <label class="option-label"><input type="radio" name="q25" value="B"> B. The image is virtual and located on the same side as the object.</label>
+                        <label class="option-label"><input type="radio" name="q25" value="C"> C. The lens has melted due to thermal absorption.</label>
+                        <label class="option-label"><input type="radio" name="q25" value="D"> D. Light speed in the lens was negative.</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q25">
+                        <strong>Correct Answer: B</strong><br>
+                        <em>Evidence:</em> The Formula Callout clarifies: "di is image distance (positive for real images on the opposite side, negative for virtual images on the same side)".
+                    </div>
+                </div>
+
+                <!-- Q26 -->
+                <div class="question-card" id="card_q26">
+                    <div class="question-text"><span class="question-num">26.</span> Why are concave lenses installed in security door peepholes?</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q26" value="A"> A. They magnify visitors' faces so tiny skin pores can be identified.</label>
+                        <label class="option-label"><input type="radio" name="q26" value="B"> B. They form an upright, diminished virtual image with a wide viewing angle.</label>
+                        <label class="option-label"><input type="radio" name="q26" value="C"> C. They emit infrared radiation through solid wooden doors.</label>
+                        <label class="option-label"><input type="radio" name="q26" value="D"> D. They focus outdoor sunlight onto an internal projection screen.</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q26">
+                        <strong>Correct Answer: B</strong><br>
+                        <em>Evidence:</em> Paragraph D &amp; Table 2.1 confirm that concave lenses produce upright, diminished virtual images suited for door peepholes.
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUESTIONS FOR PASSAGE 3 (Q27 - Q40) -->
+            <div class="question-group" id="qGroupPassage3" style="display:none;">
+                <div class="question-section-banner">
+                    <h3>Questions 27–31: Diagram Label Completion</h3>
+                    <p>Label the anatomical diagram of the human eye below. Choose <strong>NO MORE THAN TWO WORDS</strong> from Reading Passage 3 for each answer.</p>
+                </div>
+
+                <!-- Q27 -->
+                <div class="question-card" id="card_q27">
+                    <div class="question-text"><span class="question-num">27.</span> The transparent external dome providing roughly 70% of static converging refraction: <input type="text" class="text-input-field" name="q27" id="input_q27" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q27">
+                        <strong>Correct Answer: cornea</strong><br>
+                        <em>Evidence:</em> Paragraph B notes: "the cornea—a transparent, dome-shaped convex layer... provides approximately 70% to 75% of the eye's total refractive converging power".
+                    </div>
+                </div>
+
+                <!-- Q28 -->
+                <div class="question-card" id="card_q28">
+                    <div class="question-text"><span class="question-num">28.</span> The pigmented muscular aperture diaphragm regulating pupillary dilation and light entry: <input type="text" class="text-input-field" name="q28" id="input_q28" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q28">
+                        <strong>Correct Answer: iris</strong><br>
+                        <em>Evidence:</em> Paragraph C states: "The pupil's diameter is regulated dynamically by the iris, the pigmented circular muscle ring".
+                    </div>
+                </div>
+
+                <!-- Q29 -->
+                <div class="question-card" id="card_q29">
+                    <div class="question-text"><span class="question-num">29.</span> The circular muscle ring that contracts to thicken the lens for near reading: <input type="text" class="text-input-field" name="q29" id="input_q29" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q29">
+                        <strong>Correct Answer: ciliary muscles / ciliary muscle</strong><br>
+                        <em>Evidence:</em> Paragraph D explains: "when shifting focus to read a handheld book nearby, the ciliary muscles actively contract... allowing the elastic lens capsule to rebound into a steeper, rounder, thicker profile".
+                    </div>
+                </div>
+
+                <!-- Q30 -->
+                <div class="question-card" id="card_q30">
+                    <div class="question-text"><span class="question-num">30.</span> The posterior light-sensitive neural tissue membrane where images focus: <input type="text" class="text-input-field" name="q30" id="input_q30" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q30">
+                        <strong>Correct Answer: retina</strong><br>
+                        <em>Evidence:</em> Paragraph E specifies: "converge incoming light rays directly onto the retina, a delicate neural tissue membrane lining the posterior inner surface".
+                    </div>
+                </div>
+
+                <!-- Q31 -->
+                <div class="question-card" id="card_q31">
+                    <div class="question-text"><span class="question-num">31.</span> The bundle of roughly one million neural fibers transmitting impulses to the visual cortex: <input type="text" class="text-input-field" name="q31" id="input_q31" placeholder="Type answer...">.</div>
+                    <div class="explanation-box" id="exp_q31">
+                        <strong>Correct Answer: optic nerve</strong><br>
+                        <em>Evidence:</em> Paragraph F establishes: "channeled along roughly one million axonal nerve fibers comprising the optic nerve directly into the brain's visual cortex".
+                    </div>
+                </div>
+
+                <div class="question-section-banner">
+                    <h3>Questions 32–36: Yes / No / Not Given</h3>
+                    <p>Do the following statements reflect the claims of the author in Reading Passage 3? Write <strong>YES</strong>, <strong>NO</strong>, or <strong>NOT GIVEN</strong>.</p>
+                </div>
+
+                <!-- Q32 -->
+                <div class="question-card" id="card_q32">
+                    <div class="question-text"><span class="question-num">32.</span> When a person looks at a distant mountain, the ciliary muscles contract to make the lens thicker.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q32" value="YES"> YES</label>
+                        <label class="option-label"><input type="radio" name="q32" value="NO"> NO</label>
+                        <label class="option-label"><input type="radio" name="q32" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q32">
+                        <strong>Correct Answer: NO</strong><br>
+                        <em>Evidence:</em> Paragraph D contradicts this: "When an observer gazes at a distant mountain, the ciliary muscles relax... stretching the flexible lens into a thinner, flatter profile".
+                    </div>
+                </div>
+
+                <!-- Q33 -->
+                <div class="question-card" id="card_q33">
+                    <div class="question-text"><span class="question-num">33.</span> Rod photoreceptor cells provide monochromatic vision under low-light conditions but cannot distinguish colors.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q33" value="YES"> YES</label>
+                        <label class="option-label"><input type="radio" name="q33" value="NO"> NO</label>
+                        <label class="option-label"><input type="radio" name="q33" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q33">
+                        <strong>Correct Answer: YES</strong><br>
+                        <em>Evidence:</em> Paragraph E confirms: "Rod cells... provide human night vision in monochrome shades of gray, but are incapable of discerning color."
+                    </div>
+                </div>
+
+                <!-- Q34 -->
+                <div class="question-card" id="card_q34">
+                    <div class="question-text"><span class="question-num">34.</span> A red strawberry appears red because its surface pigments absorb red light and reflect green and blue light into the eye.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q34" value="YES"> YES</label>
+                        <label class="option-label"><input type="radio" name="q34" value="NO"> NO</label>
+                        <label class="option-label"><input type="radio" name="q34" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q34">
+                        <strong>Correct Answer: NO</strong><br>
+                        <em>Evidence:</em> Paragraph F states the opposite: "A ripe red strawberry reflects light waves of approximately 650–700 nm into the eye while absorbing green and blue frequencies".
+                    </div>
+                </div>
+
+                <!-- Q35 -->
+                <div class="question-card" id="card_q35">
+                    <div class="question-text"><span class="question-num">35.</span> Taking regular 20-second distance breaks helps relieve visual fatigue by allowing ciliary muscles to relax.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q35" value="YES"> YES</label>
+                        <label class="option-label"><input type="radio" name="q35" value="NO"> NO</label>
+                        <label class="option-label"><input type="radio" name="q35" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q35">
+                        <strong>Correct Answer: YES</strong><br>
+                        <em>Evidence:</em> Paragraph G affirms the 20-20-20 rule allows "ciliary muscles to relax into their natural unaccommodated state" to prevent eyestrain.
+                    </div>
+                </div>
+
+                <!-- Q36 -->
+                <div class="question-card" id="card_q36">
+                    <div class="question-text"><span class="question-num">36.</span> Blue-light filtering spectacles have been clinically proven to cure congenital red-green color blindness.</div>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q36" value="YES"> YES</label>
+                        <label class="option-label"><input type="radio" name="q36" value="NO"> NO</label>
+                        <label class="option-label"><input type="radio" name="q36" value="NOT GIVEN"> NOT GIVEN</label>
+                    </div>
+                    <div class="explanation-box" id="exp_q36">
+                        <strong>Correct Answer: NOT GIVEN</strong><br>
+                        <em>Evidence:</em> Paragraph E and F discuss S-cones, M-cones, and L-cones, but make no mention of blue-light spectacles curing color blindness.
+                    </div>
+                </div>
+
+                <div class="question-section-banner">
+                    <h3>Questions 37–40: Summary Completion</h3>
+                    <p>Complete the summary using the list of words, <strong>A–G</strong>, below.</p>
+                    <div style="background:#ffffff; border:1px solid #cbd5e1; padding:8px 12px; margin-bottom:12px; font-size:0.9rem;">
+                        <strong>A</strong> accommodation &nbsp;|&nbsp; <strong>B</strong> reflects &nbsp;|&nbsp; <strong>C</strong> inverted &nbsp;|&nbsp; <strong>D</strong> cones &nbsp;|&nbsp; <strong>E</strong> absorbs &nbsp;|&nbsp; <strong>F</strong> upright &nbsp;|&nbsp; <strong>G</strong> diopters
+                    </div>
+                </div>
+
+                <!-- Q37 -->
+                <div class="question-card" id="card_q37">
+                    <div class="question-text"><span class="question-num">37.</span> The biological autofocus mechanism through which the crystalline lens shifts curvature is termed <input type="text" class="text-input-field" style="width:70px;" name="q37" id="input_q37" placeholder="Letter">.</div>
+                    <div class="explanation-box" id="exp_q37">
+                        <strong>Correct Answer: A (accommodation)</strong><br>
+                        <em>Evidence:</em> Paragraph D defines: "the crystalline lens provides variable fine-tuning through the physiological process of accommodation."
+                    </div>
+                </div>
+
+                <!-- Q38 -->
+                <div class="question-card" id="card_q38">
+                    <div class="question-text"><span class="question-num">38.</span> Optical images projected by the cornea and lens onto the retina are real and <input type="text" class="text-input-field" style="width:70px;" name="q38" id="input_q38" placeholder="Letter">.</div>
+                    <div class="explanation-box" id="exp_q38">
+                        <strong>Correct Answer: C (inverted)</strong><br>
+                        <em>Evidence:</em> Paragraph E states: "The inverted real image projected onto the retina is absorbed by approximately 126 million specialized photoreceptor cells".
+                    </div>
+                </div>
+
+                <!-- Q39 -->
+                <div class="question-card" id="card_q39">
+                    <div class="question-text"><span class="question-num">39.</span> High-resolution daylight vision and chromatic sensation are governed by photoreceptors known as <input type="text" class="text-input-field" style="width:70px;" name="q39" id="input_q39" placeholder="Letter">.</div>
+                    <div class="explanation-box" id="exp_q39">
+                        <strong>Correct Answer: D (cones)</strong><br>
+                        <em>Evidence:</em> Paragraph E establishes: "Cone cells (approx. 6 million) operate under photopic daylight illumination, granting high visual acuity and chromatic sensation."
+                    </div>
+                </div>
+
+                <!-- Q40 -->
+                <div class="question-card" id="card_q40">
+                    <div class="question-text"><span class="question-num">40.</span> A yellow object appears yellow because its chemical pigments absorb blue light and <input type="text" class="text-input-field" style="width:70px;" name="q40" id="input_q40" placeholder="Letter"> green and red wavelengths into the observer's eye.</div>
+                    <div class="explanation-box" id="exp_q40">
+                        <strong>Correct Answer: B (reflects)</strong><br>
+                        <em>Evidence:</em> Paragraph F explains: "a yellow banana reflects both green and red wavelengths while absorbing blue."
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer Status & Question Palette Drawer -->
+    <footer class="test-footer">
+        <div class="palette-container">
+            <span id="footerStatusText">Questions: <strong>0 / 40 Answered</strong></span>
+            <button class="palette-toggle-btn" id="paletteToggleFooter">Open Question Palette</button>
+        </div>
+        <div>
+            <button class="btn btn-secondary" id="resetTestBtn">Reset Form</button>
+            <button class="btn btn-gold" id="submitBottomBtn">Finish &amp; Check Score</button>
+        </div>
+    </footer>
+
+    <!-- Question Palette Floating Grid -->
+    <div class="palette-grid" id="paletteGrid">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:6px;">
+            <strong style="font-size:0.9rem; color:#0b2545;">Question Navigation (1–40)</strong>
+            <button id="closePaletteBtn" style="background:none; border:none; font-size:1.1rem; cursor:pointer;">&times;</button>
+        </div>
+        <div class="grid-numbers" id="gridButtonsContainer"></div>
+        <div style="margin-top:10px; font-size:0.75rem; color:#64748b; display:flex; gap:12px;">
+            <span><span style="display:inline-block; width:10px; height:10px; background:#134074; border-radius:2px;"></span> Answered</span>
+            <span><span style="display:inline-block; width:10px; height:10px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px;"></span> Unanswered</span>
+        </div>
+    </div>
+
+    <!-- Bilingual Vocabulary Slide-over Drawer -->
+    <aside class="vocab-drawer" id="vocabDrawer">
+        <div class="vocab-header">
+            <h3>📖 Bilingual Vocabulary Bank</h3>
+            <button id="closeVocabBtn" style="background:none; border:none; color:#ffffff; font-size:1.3rem; cursor:pointer;">&times;</button>
+        </div>
+        <div class="vocab-list">
+            <div class="vocab-item">
+                <div class="vocab-term">Refractive Index (n) <span class="vocab-thai">(ดัชนีหักเห)</span></div>
+                <div class="vocab-def">A scalar number measuring how much a transparent material slows down light compared to vacuum (n = c / v).</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Critical Angle (θc) <span class="vocab-thai">(มุมวิกฤต)</span></div>
+                <div class="vocab-def">The angle of incidence in a denser medium that causes refracted light to bend at exactly 90° along the boundary.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Total Internal Reflection <span class="vocab-thai">(การสะท้อนกลับหมด)</span></div>
+                <div class="vocab-def">Complete reflection of light back inside a denser medium when the incident angle exceeds the critical angle.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Optical Waveguide / Fiber Optic <span class="vocab-thai">(เส้นใยนำแสง)</span></div>
+                <div class="vocab-def">Thin glass strand utilizing continuous total internal reflection to transmit digital light signals over long distances.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Convex Lens <span class="vocab-thai">(เลนส์นูน)</span></div>
+                <div class="vocab-def">A lens thicker in the middle that converges parallel light rays to a real focal point (+f).</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Concave Lens <span class="vocab-thai">(เลนส์เว้า)</span></div>
+                <div class="vocab-def">A lens thinner in the middle that diverges light rays, always forming an upright, smaller virtual image (-f).</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Cornea <span class="vocab-thai">(กระจกตา)</span></div>
+                <div class="vocab-def">The clear dome-like exterior layer of the eye that provides the majority (~70%) of static converging refraction.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Iris &amp; Pupil <span class="vocab-thai">(ม่านตาและรูม่านตา)</span></div>
+                <div class="vocab-def">The colored circular muscle and central aperture that adjust diameter to regulate the volume of light entering the eye.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Crystalline Lens <span class="vocab-thai">(เลนส์แก้วตา)</span></div>
+                <div class="vocab-def">The flexible transparent structure inside the eye that fine-tunes focal length for near and distant viewing.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Ciliary Muscles <span class="vocab-thai">(กล้ามเนื้อยึดเลนส์ตา)</span></div>
+                <div class="vocab-def">Circumferential eye muscles that contract (thickening lens for near vision) and relax (flattening lens for far vision).</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Accommodation <span class="vocab-thai">(การปรับโฟกัสของตา)</span></div>
+                <div class="vocab-def">The physiological process whereby ciliary muscles adjust the curvature of the crystalline lens to maintain sharp focus.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Retina <span class="vocab-thai">(จอประสาทตา)</span></div>
+                <div class="vocab-def">The delicate neural light-sensitive lining on the posterior eye containing rod and cone photoreceptors.</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Rod Cells &amp; Cone Cells <span class="vocab-thai">(เซลล์รูปแท่งและเซลล์รูปกรวย)</span></div>
+                <div class="vocab-def">Rods provide monochrome night vision in dim light; cones provide high-acuity color vision in daylight (Red, Green, Blue).</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-term">Optic Nerve <span class="vocab-thai">(เส้นประสาทตา)</span></div>
+                <div class="vocab-def">The neural conduit carrying visual electrochemical nerve impulses from retinal photoreceptors to the brain.</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ========================================================
+         AUTOMATED GRADING REPORT MODAL IN TIMES NEW ROMAN 10PT
+         ======================================================== -->
+    <div class="report-overlay" id="reportOverlay">
+        <div class="report-sheet">
+            
+            <!-- School & Assessment Header -->
+            <div class="report-header-banner">
+                <div class="school-title">Chalermkwansatree School • Phitsanulok, Thailand</div>
+                <div class="program-title">Science Math Bilingual Program (SMBP) • Cambridge Lower Secondary Science</div>
+                <div class="report-main-title">OFFICIAL CANDIDATE EVALUATION &amp; DIAGNOSTIC GRADING REPORT</div>
+                <p style="font-size:9pt; color:#64748b; margin-top:4px;">IELTS Academic Reading Assessment • Paper 3: Dioptrics, Optical Engineering, and the Biomechanics of Human Vision</p>
+            </div>
+
+            <!-- Candidate Metadata -->
+            <div class="report-meta-grid">
+                <div class="meta-field">
+                    <strong>Candidate Level</strong>
+                    Grade 9 Bilingual (M.3)
+                </div>
+                <div class="meta-field">
+                    <strong>Assessment Unit</strong>
+                    Module 3 (Lessons 12–14)
+                </div>
+                <div class="meta-field">
+                    <strong>Time Allowed / Used</strong>
+                    <span id="repTimeUsed">60 Mins / 60:00</span>
+                </div>
+                <div class="meta-field">
+                    <strong>Submission Status</strong>
+                    <span id="repSubmitStatus" style="color:#15803d; font-weight:bold;">Finalized &amp; Graded</span>
+                </div>
+            </div>
+
+            <!-- Executive Scorecard Banner -->
+            <div class="executive-scorecard">
+                <div class="band-badge-box">
+                    <div class="band-val" id="repBandScore">Band 7.5</div>
+                    <div class="band-label" id="repBandDescriptor">Good Academic User</div>
+                </div>
+                <div class="band-desc-box">
+                    <h3>Overall Performance Assessment</h3>
+                    <p id="repRawScoreText" style="font-size:10.5pt; font-weight:bold; color:#0b2545;">Overall Raw Score: 33 / 40 (82.5%) • CEFR Level: C1 Equivalent</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="repProgressBar"></div>
+                    </div>
+                    <p id="repExecutiveSummary" style="color:#374151; font-size:9.5pt; margin-top:6px;">
+                        The candidate displays outstanding command of dioptric principles, demonstrating superior comprehension in analyzing Snell's law boundary transitions, calculating critical angles for total internal reflection, tracing thin lens focal geometries, and detailing the biomechanics of ocular accommodation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 1: Passage Sub-Scores -->
+            <div class="report-section-title">Section 1: Passage-by-Passage Competency Breakdown</div>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th style="width:20%;">Reading Passage</th>
+                        <th style="width:28%;">Curricular &amp; Scientific Scope</th>
+                        <th style="width:14%;">Questions</th>
+                        <th style="width:14%;">Raw Score</th>
+                        <th style="width:10%;">Accuracy</th>
+                        <th style="width:14%;">Proficiency Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Passage 1</strong></td>
+                        <td>Snell's Law, Critical Angle &amp; TIR (Lesson 12)</td>
+                        <td>Q1 – Q13 (13 items)</td>
+                        <td id="repP1Score">11 / 13</td>
+                        <td id="repP1Pct">84.6%</td>
+                        <td><span style="color:#15803d; font-weight:bold;">Distinction</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Passage 2</strong></td>
+                        <td>Thin Lenses &amp; Focal Ray Tracing (Lesson 13)</td>
+                        <td>Q14 – Q26 (13 items)</td>
+                        <td id="repP2Score">11 / 13</td>
+                        <td id="repP2Pct">84.6%</td>
+                        <td><span style="color:#15803d; font-weight:bold;">Distinction</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Passage 3</strong></td>
+                        <td>Eye Anatomy &amp; Accommodation (Lesson 14)</td>
+                        <td>Q27 – Q40 (14 items)</td>
+                        <td id="repP3Score">11 / 14</td>
+                        <td id="repP3Pct">78.6%</td>
+                        <td><span style="color:#0369a1; font-weight:bold;">Proficient</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Section 2: Cognitive Skills Matrix -->
+            <div class="report-section-title">Section 2: Cognitive Reading &amp; Scientific Inquiry Skill Matrix</div>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Cognitive Skill Category</th>
+                        <th>Target IELTS Question Types</th>
+                        <th>Question Items</th>
+                        <th>Observed Accuracy</th>
+                        <th>Pedagogical Diagnostic Interpretation</th>
+                    </tr>
+                </thead>
+                <tbody id="repSkillsTableBody">
+                    <!-- Populated dynamically by JS -->
+                </tbody>
+            </table>
+
+            <!-- Section 3: Itemized 40-Question Audit -->
+            <div class="report-section-title">Section 3: Comprehensive 40-Question Itemized Audit</div>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th style="width:6%;">Q#</th>
+                        <th style="width:14%;">Passage / Topic</th>
+                        <th style="width:15%;">Question Type</th>
+                        <th style="width:15%;">Your Answer</th>
+                        <th style="width:15%;">Official Key</th>
+                        <th style="width:8%; text-align:center;">Result</th>
+                        <th style="width:27%;">Scientific Evidence &amp; Citation</th>
+                    </tr>
+                </thead>
+                <tbody id="repAuditTableBody">
+                    <!-- Populated dynamically by JS -->
+                </tbody>
+            </table>
+
+            <!-- Pedagogical Recommendations -->
+            <div class="report-section-title">Section 4: Targeted Revision &amp; Bilingual Learning Support</div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:12px 16px; border-radius:4px; font-size:9.5pt; line-height:1.5;">
+                <p><strong>Recommendations for Grade 9 Bilingual Science Candidates:</strong></p>
+                <ul style="margin-left:20px; margin-top:6px; color:#374151;">
+                    <li><strong>Total Internal Reflection Conditions:</strong> Remember that TIR requires two strict criteria: light must originate in the <em>optically denser</em> medium, and the angle of incidence must strictly exceed the <em>critical angle</em> (θ₁ &gt; θc).</li>
+                    <li><strong>Lens Focal Geometry:</strong> Convex lenses converge light to a real focus (+f), forming real inverted images when do &gt; f, and upright magnified virtual images when do &lt; f. Concave lenses always diverge light, yielding virtual diminished images (-f).</li>
+                    <li><strong>Ocular Accommodation Biomechanics:</strong> Review ciliary muscle action: near vision requires muscle <em>contraction</em> to thicken the lens (higher dioptric power), whereas distant vision entails muscle <em>relaxation</em> to flatten the lens.</li>
+                </ul>
+            </div>
+
+            <!-- Report Actions -->
+            <div class="report-actions">
+                <button class="btn btn-secondary" id="printReportBtn">🖨️ Print / Save PDF</button>
+                <button class="btn btn-primary" id="returnToReviewBtn">🔍 Review Answers in Split Screen</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Official Answer Key Mapping
+            const ANSWER_KEY = {
+                q1: "TRUE",
+                q2: "FALSE",
+                q3: "TRUE",
+                q4: "FALSE",
+                q5: "TRUE",
+                q6: "NOT GIVEN",
+                q7: ["laser light", "light", "laser pulses"],
+                q8: ["cladding", "glass cladding"],
+                q9: ["critical angle"],
+                q10: ["total internal reflection", "internal reflections"],
+                q11: ["refractive index"],
+                q12: ["19.5", "19.5 degrees"],
+                q13: ["24.4", "24.4 degrees"],
+                q14: "A",
+                q15: "C",
+                q16: "D",
+                q17: "E",
+                q18: "B",
+                q19: ["magnified", "larger"],
+                q20: ["magnifying glass"],
+                q21: ["negative"],
+                q22: ["myopia", "nearsightedness"],
+                q23: "B",
+                q24: "A",
+                q25: "B",
+                q26: "B",
+                q27: ["cornea", "the cornea"],
+                q28: ["iris", "the iris"],
+                q29: ["ciliary muscles", "ciliary muscle"],
+                q30: ["retina", "the retina"],
+                q31: ["optic nerve", "the optic nerve"],
+                q32: "NO",
+                q33: "YES",
+                q34: "NO",
+                q35: "YES",
+                q36: "NOT GIVEN",
+                q37: "A",
+                q38: "C",
+                q39: "D",
+                q40: "B"
+            };
+
+            // Metadata for Audit Report
+            const QUESTION_META = {
+                q1: { passage: "P1 (L12)", type: "True / False / Not Given", citation: "Para B: Light decelerates when traveling from air into water (300,000 km/s to 225,000 km/s)." },
+                q2: { passage: "P1 (L12)", type: "True / False / Not Given", citation: "Para B: From denser to less dense media, light speeds up and bends away from the normal." },
+                q3: { passage: "P1 (L12)", type: "True / False / Not Given", citation: "Para B: Outward refraction bends rays away from the normal, elevating the apparent position of fish." },
+                q4: { passage: "P1 (L12)", type: "True / False / Not Given", citation: "Para D: Crown glass has a critical angle of 42°, which is larger than diamond's 24.4°." },
+                q5: { passage: "P1 (L12)", type: "True / False / Not Given", citation: "Para D & E: TIR only occurs when traveling from denser to rarer media at θ₁ > θc." },
+                q6: { passage: "P1 (L12)", type: "True / False / Not Given", citation: "Para F: Undersea fiber cables are discussed, but no mention of monthly algae cleaning." },
+                q7: { passage: "P1 (L12)", type: "Diagram / Process Completion", citation: "Para F: Digital data travels through fiber cables as laser light pulses." },
+                q8: { passage: "P1 (L12)", type: "Diagram / Process Completion", citation: "Para F: Pure glass core is encased in a protective glass cladding." },
+                q9: { passage: "P1 (L12)", type: "Diagram / Process Completion", citation: "Para F: Rays are injected at angles strictly exceeding the critical angle." },
+                q10: { passage: "P1 (L12)", type: "Diagram / Process Completion", citation: "Para F: Continuous total internal reflection propagates signals across oceans without loss." },
+                q11: { passage: "P1 (L12)", type: "Sentence Completion", citation: "Para A: Optical density is parameterized by the refractive index (n = c / v)." },
+                q12: { passage: "P1 (L12)", type: "Sentence Completion", citation: "Para C: Snell's Law calculation for air-to-glass at 30° yields an angle of 19.5°." },
+                q13: { passage: "P1 (L12)", type: "Sentence Completion", citation: "Para D & F: Diamond's brilliant sparkle is driven by its narrow 24.4° critical angle." },
+                q14: { passage: "P2 (L13)", type: "Matching Information", citation: "Para A: Steeper surface curvature causes light to bend more sharply across boundaries." },
+                q15: { passage: "P2 (L13)", type: "Matching Information", citation: "Para C: Object beyond 2f forming an inverted diminished real image operates in cameras and eyes." },
+                q16: { passage: "P2 (L13)", type: "Matching Information", citation: "Para D: Concave lenses always produce virtual, upright, diminished images regardless of distance." },
+                q17: { passage: "P2 (L13)", type: "Matching Information", citation: "Para E: Multi-element compound systems eliminate chromatic and spherical aberrations." },
+                q18: { passage: "P2 (L13)", type: "Matching Information", citation: "Para B: Parallel rays converge at focal point F; convex lenses are assigned +f." },
+                q19: { passage: "P2 (L13)", type: "Table Completion", citation: "Para C: An object between 1f and 2f forms a real, inverted, and magnified image." },
+                q20: { passage: "P2 (L13)", type: "Table Completion", citation: "Para C: Object inside 1f forms an upright magnified virtual image (magnifying glass)." },
+                q21: { passage: "P2 (L13)", type: "Table Completion", citation: "Para D: Because rays diverge from a virtual focus, concave lenses have negative focal length." },
+                q22: { passage: "P2 (L13)", type: "Table Completion", citation: "Para E: Concave lenses diverge light slightly to correct nearsightedness (myopia)." },
+                q23: { passage: "P2 (L13)", type: "Multiple Choice", citation: "Para B: Parallel incident rays refract inward to intersect at the focal point." },
+                q24: { passage: "P2 (L13)", type: "Multiple Choice", citation: "Para C: Placing an object between 1f and 2f produces a real magnified image in projectors." },
+                q25: { passage: "P2 (L13)", type: "Multiple Choice", citation: "Formula Callout: Negative image distance denotes a virtual image on the object's side." },
+                q26: { passage: "P2 (L13)", type: "Multiple Choice", citation: "Para D & Table 2.1: Concave lenses provide upright diminished views across wide angles in peepholes." },
+                q27: { passage: "P3 (L14)", type: "Diagram Label Completion", citation: "Para B: The transparent outer dome providing ~70% of converging power is the cornea." },
+                q28: { passage: "P3 (L14)", type: "Diagram Label Completion", citation: "Para C: The colored circular muscular ring regulating pupillary dilation is the iris." },
+                q29: { passage: "P3 (L14)", type: "Diagram Label Completion", citation: "Para D: Ciliary muscles actively contract to thicken the lens for near reading." },
+                q30: { passage: "P3 (L14)", type: "Diagram Label Completion", citation: "Para E: The posterior light-sensitive neural tissue membrane is the retina." },
+                q31: { passage: "P3 (L14)", type: "Diagram Label Completion", citation: "Para F: Signals are carried by ~1 million fibers comprising the optic nerve." },
+                q32: { passage: "P3 (L14)", type: "Yes / No / Not Given", citation: "Para D: When viewing distant objects, ciliary muscles relax (not contract), flattening the lens." },
+                q33: { passage: "P3 (L14)", type: "Yes / No / Not Given", citation: "Para E: Rod cells provide monochrome night vision but cannot detect color." },
+                q34: { passage: "P3 (L14)", type: "Yes / No / Not Given", citation: "Para F: A red strawberry reflects red wavelengths and absorbs green and blue." },
+                q35: { passage: "P3 (L14)", type: "Yes / No / Not Given", citation: "Para G: The 20-20-20 rule allows contracted ciliary muscles to relax, preventing eyestrain." },
+                q36: { passage: "P3 (L14)", type: "Yes / No / Not Given", citation: "Para E & F: Cones are discussed, but no mention of blue-light spectacles curing color blindness." },
+                q37: { passage: "P3 (L14)", type: "Summary Completion", citation: "Para D: Dynamic lens curvature adjustment is termed accommodation." },
+                q38: { passage: "P3 (L14)", type: "Summary Completion", citation: "Para E: Images focused onto the retina are real and inverted." },
+                q39: { passage: "P3 (L14)", type: "Summary Completion", citation: "Para E: Daytime visual acuity and color vision are governed by cone cells." },
+                q40: { passage: "P3 (L14)", type: "Summary Completion", citation: "Para F: A yellow banana absorbs blue light and reflects green and red wavelengths." }
+            };
+
+            // State management
+            let currentPassage = 1;
+            let timeRemaining = 60 * 60; // 60 minutes
+            let timerInterval = null;
+            let testSubmitted = false;
+
+            // Timer display
+            const timerBox = document.getElementById('timerBox');
+            const timerText = document.getElementById('timerText');
+
+            function updateTimer() {
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    timerText.textContent = "00:00";
+                    timerBox.classList.add('timer-warning');
+                    if (!testSubmitted) {
+                        generateGradingReport("Time Expired (60:00 Auto-Submission)");
+                    }
+                    return;
+                }
+                
+                if (timeRemaining <= 300) {
+                    timerBox.classList.add('timer-warning');
+                }
+
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerText.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                timeRemaining--;
+            }
+            timerInterval = setInterval(updateTimer, 1000);
+
+            // Tab switching logic
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const passages = {
+                1: document.getElementById('passage1'),
+                2: document.getElementById('passage2'),
+                3: document.getElementById('passage3')
+            };
+            const questionGroups = {
+                1: document.getElementById('qGroupPassage1'),
+                2: document.getElementById('qGroupPassage2'),
+                3: document.getElementById('qGroupPassage3')
+            };
+
+            function switchPassage(num) {
+                currentPassage = num;
+                tabButtons.forEach(btn => {
+                    if (parseInt(btn.dataset.passage) === num) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                for (let i = 1; i <= 3; i++) {
+                    if (i === num) {
+                        passages[i].style.display = 'block';
+                        questionGroups[i].style.display = 'block';
+                    } else {
+                        passages[i].style.display = 'none';
+                        questionGroups[i].style.display = 'none';
+                    }
+                }
+
+                document.getElementById('passagePane').scrollTop = 0;
+                document.getElementById('questionPane').scrollTop = 0;
+            }
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchPassage(parseInt(this.dataset.passage));
+                });
+            });
+
+            // Question Palette Generation (1 to 40)
+            const gridContainer = document.getElementById('gridButtonsContainer');
+            for (let i = 1; i <= 40; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'grid-btn';
+                btn.id = `palette_btn_${i}`;
+                btn.textContent = i;
+                btn.addEventListener('click', () => {
+                    navigateToQuestion(i);
+                });
+                gridContainer.appendChild(btn);
+            }
+
+            function navigateToQuestion(qNum) {
+                let targetPassage = 1;
+                if (qNum >= 14 && qNum <= 26) targetPassage = 2;
+                if (qNum >= 27 && qNum <= 40) targetPassage = 3;
+
+                if (currentPassage !== targetPassage) {
+                    switchPassage(targetPassage);
+                }
+
+                setTimeout(() => {
+                    const card = document.getElementById(`card_q${qNum}`);
+                    if (card) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        card.style.borderColor = '#c59b27';
+                        setTimeout(() => { card.style.borderColor = ''; }, 1500);
+                    }
+                }, 50);
+
+                document.getElementById('paletteGrid').classList.remove('open');
+            }
+
+            // Palette Toggle Handlers
+            const paletteGrid = document.getElementById('paletteGrid');
+            document.getElementById('openPaletteBtn').addEventListener('click', () => {
+                paletteGrid.classList.toggle('open');
+            });
+            document.getElementById('paletteToggleFooter').addEventListener('click', () => {
+                paletteGrid.classList.toggle('open');
+            });
+            document.getElementById('closePaletteBtn').addEventListener('click', () => {
+                paletteGrid.classList.remove('open');
+            });
+
+            // Vocabulary Drawer Handlers
+            const vocabDrawer = document.getElementById('vocabDrawer');
+            document.getElementById('vocabToggleBtn').addEventListener('click', () => {
+                vocabDrawer.classList.toggle('open');
+            });
+            document.getElementById('closeVocabBtn').addEventListener('click', () => {
+                vocabDrawer.classList.remove('open');
+            });
+
+            // Tracking answer state
+            function getAnswer(qNum) {
+                const radios = document.getElementsByName(`q${qNum}`);
+                if (radios.length > 0) {
+                    for (let r of radios) {
+                        if (r.checked) return r.value.trim();
+                    }
+                }
+                const textInput = document.getElementById(`input_q${qNum}`);
+                if (textInput) {
+                    return textInput.value.trim();
+                }
+                const select = document.getElementById(`select_q${qNum}`);
+                if (select) {
+                    return select.value.trim();
+                }
+                return "";
+            }
+
+            function updateProgress() {
+                let answeredCount = 0;
+                for (let i = 1; i <= 40; i++) {
+                    const ans = getAnswer(i);
+                    const gridBtn = document.getElementById(`palette_btn_${i}`);
+                    const card = document.getElementById(`card_q${i}`);
+
+                    if (ans !== "") {
+                        answeredCount++;
+                        if (gridBtn) gridBtn.classList.add('filled');
+                        if (card) card.classList.add('answered');
+                    } else {
+                        if (gridBtn) gridBtn.classList.remove('filled');
+                        if (card) card.classList.remove('answered');
+                    }
+                }
+
+                document.getElementById('progressBadge').textContent = `${answeredCount} / 40 Answered`;
+                document.getElementById('footerStatusText').innerHTML = `Questions: <strong>${answeredCount} / 40 Answered</strong>`;
+            }
+
+            document.querySelectorAll('input[type="radio"]').forEach(el => el.addEventListener('change', updateProgress));
+            document.querySelectorAll('input[type="text"]').forEach(el => el.addEventListener('input', updateProgress));
+            document.querySelectorAll('select').forEach(el => el.addEventListener('change', updateProgress));
+
+            // ========================================================
+            // AUTOMATED GRADING & REPORT GENERATION ENGINE (10pt UI)
+            // ========================================================
+            function generateGradingReport(submissionReason = "Manual Submission by Candidate") {
+                testSubmitted = true;
+                clearInterval(timerInterval);
+
+                let rawScore = 0;
+                let p1Score = 0;
+                let p2Score = 0;
+                let p3Score = 0;
+
+                // Cognitive skill categories
+                const skillsData = {
+                    "Refractive Boundary Principles (True/False/Not Given)": { total: 6, correct: 0, items: "Q1–Q6" },
+                    "Waveguide Process Synthesis (Process Completion)": { total: 4, correct: 0, items: "Q7–Q10" },
+                    "Quantitative Dioptrics (Sentence Completion)": { total: 3, correct: 0, items: "Q11–Q13" },
+                    "Dioptric Information Sourcing (Matching Information)": { total: 5, correct: 0, items: "Q14–Q18" },
+                    "Lens Geometric Categorization (Table Completion)": { total: 4, correct: 0, items: "Q19–Q22" },
+                    "Thin Lens Predictive Reasoning (Multiple Choice)": { total: 4, correct: 0, items: "Q23–Q26" },
+                    "Ocular Anatomical Identification (Diagram Labels)": { total: 5, correct: 0, items: "Q27–Q31" },
+                    "Physiological Optics Claims (Yes/No/Not Given)": { total: 5, correct: 0, items: "Q32–Q36" },
+                    "Photoreceptive Synthesis (Summary Completion)": { total: 4, correct: 0, items: "Q37–Q40" }
+                };
+
+                const auditRows = [];
+
+                for (let i = 1; i <= 40; i++) {
+                    const userAns = getAnswer(i);
+                    const userAnsLower = userAns.toLowerCase();
+                    const correctAns = ANSWER_KEY[`q${i}`];
+                    let isCorrect = false;
+
+                    if (Array.isArray(correctAns)) {
+                        isCorrect = correctAns.some(val => val.toLowerCase() === userAnsLower);
+                    } else {
+                        isCorrect = (correctAns.toLowerCase() === userAnsLower);
+                    }
+
+                    if (isCorrect) {
+                        rawScore++;
+                        if (i <= 13) p1Score++;
+                        else if (i <= 26) p2Score++;
+                        else p3Score++;
+                    }
+
+                    // Tally skill clusters
+                    if (i <= 6) { if (isCorrect) skillsData["Refractive Boundary Principles (True/False/Not Given)"].correct++; }
+                    else if (i <= 10) { if (isCorrect) skillsData["Waveguide Process Synthesis (Process Completion)"].correct++; }
+                    else if (i <= 13) { if (isCorrect) skillsData["Quantitative Dioptrics (Sentence Completion)"].correct++; }
+                    else if (i <= 18) { if (isCorrect) skillsData["Dioptric Information Sourcing (Matching Information)"].correct++; }
+                    else if (i <= 22) { if (isCorrect) skillsData["Lens Geometric Categorization (Table Completion)"].correct++; }
+                    else if (i <= 26) { if (isCorrect) skillsData["Thin Lens Predictive Reasoning (Multiple Choice)"].correct++; }
+                    else if (i <= 31) { if (isCorrect) skillsData["Ocular Anatomical Identification (Diagram Labels)"].correct++; }
+                    else if (i <= 36) { if (isCorrect) skillsData["Physiological Optics Claims (Yes/No/Not Given)"].correct++; }
+                    else { if (isCorrect) skillsData["Photoreceptive Synthesis (Summary Completion)"].correct++; }
+
+                    // Card styling for split-screen review
+                    const card = document.getElementById(`card_q${i}`);
+                    if (card) {
+                        if (isCorrect) {
+                            card.classList.add('user-correct');
+                            card.classList.remove('user-incorrect');
+                        } else {
+                            card.classList.add('user-incorrect');
+                            card.classList.remove('user-correct');
+                        }
+                    }
+
+                    // Build audit row
+                    const meta = QUESTION_META[`q${i}`];
+                    const officialDisplay = Array.isArray(correctAns) ? correctAns.join(" / ") : correctAns;
+                    const candidateDisplay = userAns === "" ? "<em style='color:#94a3b8;'>(No Answer)</em>" : userAns;
+                    const resultBadge = isCorrect ? "<span class='badge-correct'>✓ Correct</span>" : "<span class='badge-incorrect'>✗ Incorrect</span>";
+                    const rowClass = isCorrect ? "audit-correct" : "audit-incorrect";
+
+                    auditRows.push(`
+                        <tr class="${rowClass}">
+                            <td><strong>${i}</strong></td>
+                            <td>${meta.passage}</td>
+                            <td>${meta.type}</td>
+                            <td>${candidateDisplay}</td>
+                            <td><strong>${officialDisplay}</strong></td>
+                            <td style="text-align:center;">${resultBadge}</td>
+                            <td style="font-size:9pt; line-height:1.3;">${meta.citation}</td>
+                        </tr>
+                    `);
+                }
+
+                // IELTS Band Score Scale
+                let bandScore = "1.0";
+                let descriptor = "Non User";
+                let cefr = "A1";
+
+                if (rawScore >= 39) { bandScore = "9.0"; descriptor = "Expert User"; cefr = "C2 Mastery"; }
+                else if (rawScore >= 37) { bandScore = "8.5"; descriptor = "Very Good User"; cefr = "C2"; }
+                else if (rawScore >= 35) { bandScore = "8.0"; descriptor = "Very Good User"; cefr = "C1+"; }
+                else if (rawScore >= 33) { bandScore = "7.5"; descriptor = "Good Academic User"; cefr = "C1"; }
+                else if (rawScore >= 30) { bandScore = "7.0"; descriptor = "Good User"; cefr = "B2+"; }
+                else if (rawScore >= 27) { bandScore = "6.5"; descriptor = "Competent User"; cefr = "B2"; }
+                else if (rawScore >= 23) { bandScore = "6.0"; descriptor = "Competent User"; cefr = "B2"; }
+                else if (rawScore >= 19) { bandScore = "5.5"; descriptor = "Modest User"; cefr = "B1+"; }
+                else if (rawScore >= 15) { bandScore = "5.0"; descriptor = "Modest User"; cefr = "B1"; }
+                else if (rawScore >= 12) { bandScore = "4.5"; descriptor = "Borderline User"; cefr = "A2+"; }
+                else if (rawScore >= 9) { bandScore = "4.0"; descriptor = "Limited User"; cefr = "A2"; }
+                else if (rawScore >= 6) { bandScore = "3.5"; descriptor = "Extremely Limited"; cefr = "A1+"; }
+                else if (rawScore >= 4) { bandScore = "3.0"; descriptor = "Intermittent User"; cefr = "A1"; }
+
+                const percentage = ((rawScore / 40) * 100).toFixed(1);
+                const timeUsedSeconds = (60 * 60) - Math.max(0, timeRemaining);
+                const usedMins = Math.floor(timeUsedSeconds / 60);
+                const usedSecs = timeUsedSeconds % 60;
+                const timeUsedStr = `${usedMins}m ${usedSecs}s (${submissionReason})`;
+
+                // Populate Scorecard Elements
+                document.getElementById('repBandScore').textContent = `Band ${bandScore}`;
+                document.getElementById('repBandDescriptor').textContent = descriptor;
+                document.getElementById('repRawScoreText').textContent = `Overall Raw Score: ${rawScore} / 40 (${percentage}%) • CEFR Level: ${cefr}`;
+                document.getElementById('repProgressBar').style.width = `${percentage}%`;
+                document.getElementById('repTimeUsed').textContent = timeUsedStr;
+
+                // Populate Sub-Scores
+                document.getElementById('repP1Score').textContent = `${p1Score} / 13`;
+                document.getElementById('repP1Pct').textContent = `${((p1Score / 13) * 100).toFixed(1)}%`;
+                document.getElementById('repP2Score').textContent = `${p2Score} / 13`;
+                document.getElementById('repP2Pct').textContent = `${((p2Score / 13) * 100).toFixed(1)}%`;
+                document.getElementById('repP3Score').textContent = `${p3Score} / 14`;
+                document.getElementById('repP3Pct').textContent = `${((p3Score / 14) * 100).toFixed(1)}%`;
+
+                // Populate Cognitive Skills Table
+                const skillsTbody = document.getElementById('repSkillsTableBody');
+                skillsTbody.innerHTML = "";
+                for (const [skillName, data] of Object.entries(skillsData)) {
+                    const skillPct = ((data.correct / data.total) * 100).toFixed(0);
+                    let statusLabel = "";
+                    if (skillPct >= 80) statusLabel = "<span style='color:#15803d; font-weight:bold;'>High Competence</span>";
+                    else if (skillPct >= 60) statusLabel = "<span style='color:#0369a1;'>Satisfactory</span>";
+                    else statusLabel = "<span style='color:#b91c1c;'>Target for Reinforcement</span>";
+
+                    skillsTbody.innerHTML += `
+                        <tr>
+                            <td><strong>${skillName}</strong></td>
+                            <td>${data.items}</td>
+                            <td>${data.total} items</td>
+                            <td><strong>${data.correct} / ${data.total} (${skillPct}%)</strong></td>
+                            <td>${statusLabel}</td>
+                        </tr>
+                    `;
+                }
+
+                // Populate Audit Table
+                document.getElementById('repAuditTableBody').innerHTML = auditRows.join("");
+
+                // Open Report Modal
+                document.getElementById('reportOverlay').classList.add('open');
+            }
+
+            // Submission triggers
+            document.getElementById('submitTopBtn').addEventListener('click', () => generateGradingReport("Submitted via Top Control Bar"));
+            document.getElementById('submitBottomBtn').addEventListener('click', () => generateGradingReport("Submitted via Footer Control"));
+
+            // Close report and switch to review mode
+            document.getElementById('returnToReviewBtn').addEventListener('click', () => {
+                document.getElementById('reportOverlay').classList.remove('open');
+                document.body.classList.add('review-mode');
+                switchPassage(1);
+            });
+
+            // Print report
+            document.getElementById('printReportBtn').addEventListener('click', () => {
+                window.print();
+            });
+
+            // Reset test form (toast notification)
+            document.getElementById('resetTestBtn').addEventListener('click', () => {
+                document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                document.querySelectorAll('input[type="text"]').forEach(t => t.value = "");
+                document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+                document.querySelectorAll('.question-card').forEach(c => {
+                    c.classList.remove('answered', 'user-correct', 'user-incorrect');
+                });
+                document.body.classList.remove('review-mode');
+                testSubmitted = false;
+                timeRemaining = 60 * 60;
+                timerBox.classList.remove('timer-warning');
+                updateProgress();
+
+                const toast = document.createElement('div');
+                toast.textContent = 'Examination workspace reset. 60:00 timer restarted.';
+                toast.style.cssText = 'position:fixed;bottom:60px;left:50%;transform:translateX(-50%);background:#0b2545;color:#fff;padding:8px 16px;border-radius:4px;font-size:0.9rem;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.2);';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
+            });
+
+            // Initial progress setup
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
